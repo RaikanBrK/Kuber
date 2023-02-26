@@ -1,0 +1,30 @@
+{
+    "name": "raikanbrk/kuber",
+    "description": "Biblioteca complementar ao projeto kuber",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "jeroennoten/laravel-adminlte": "^3.8",
+        "laravel/ui": "^4.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kuber\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Carlos Alexandre",
+            "email": "carlos24106@outlook.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kuber\\Providers\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
