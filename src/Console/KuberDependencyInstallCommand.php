@@ -4,6 +4,7 @@ namespace Kuber\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class KuberDependencyInstallCommand extends Command
 {
@@ -21,16 +22,32 @@ class KuberDependencyInstallCommand extends Command
      */
     protected $description = 'Instalando dependências do kuber';
 
+    private function runProcessAndEchoMessage(array $processList)
+    {
+        try {
+            foreach($processList as $process) {
+                $process->run();
+                echo $process->getOutput();
+            }
+        } catch (ProcessFailedException $exception) {
+            echo $exception->getMessage();
+        }
+    }
+
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
-        $process1 = new Process(['php', 'artisan', 'adminlte:install']);
-        $process1->run();
+        $process = array();
+        $process[] = new Process(['php', 'artisan', 'adminlte:install']);
+        $process[] = new Process(['php', 'artisan', 'ui bootstrap --auth']);
+        $process[] = new Process(['npm', 'install', 'bootstrap@4.6']);
+        $process[] = new Process(['npm', 'install', '@popperjs/core']);
+        $process[] = new Process(['npm', 'install', 'sass']);
+        $process[] = new Process(['npm', 'install', 'jquery']);
 
-        $process2 = new Process(['php', 'artisan', 'ui bootstrap --auth']);
-        $process2->run();
+        $this->runProcessAndEchoMessage($process);
 
         $this->info('Dependências instaladas com sucesso.');
     }

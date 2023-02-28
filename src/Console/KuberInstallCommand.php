@@ -5,6 +5,7 @@ namespace Kuber\Console;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Process as ProcessFacades;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class KuberInstallCommand extends Command
 {
@@ -22,18 +23,29 @@ class KuberInstallCommand extends Command
      */
     protected $description = 'Instalando ferramentas do kuber';
 
+    private function runProcessAndEchoMessage(array $processList)
+    {
+        try {
+            foreach($processList as $process) {
+                $process->run();
+                echo $process->getOutput();
+            }
+        } catch (ProcessFailedException $exception) {
+            echo $exception->getMessage();
+        }
+    }
+
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
-        $process1 = new Process(['php', 'artisan', 'kuber:install-dependency']);
-        $process1->run();
+        $process = array();
+        $process[] = new Process(['php', 'artisan', 'kuber:install-dependency']);
 
-        $process2 = new Process(['npm', 'install', ' bootstrap sass --dev']);
-        $process2->run();
+        $this->runProcessAndEchoMessage($process);
 
-        ProcessFacades::run('php artisan vendor:publish --tag=kuber-auth-config --tag=kuber-auth-migrations --tag=kuber-auth-models --force');
+        ProcessFacades::run('php artisan vendor:publish --tag=kuber-assets --force');
 
         $this->info('Ferramentas do kuber instaladas com sucesso.');
     }
