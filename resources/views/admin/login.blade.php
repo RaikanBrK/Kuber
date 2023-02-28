@@ -50,6 +50,7 @@
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Launch demo modal
+        <i class="fas fa-wrench m-3"></i>
     </button>
 
     <!-- Modal -->

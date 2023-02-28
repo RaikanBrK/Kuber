@@ -46,6 +46,7 @@ class KuberDependencyInstallCommand extends Command
         $process[] = new Process(['npm', 'install', '@popperjs/core']);
         $process[] = new Process(['npm', 'install', 'sass']);
         $process[] = new Process(['npm', 'install', 'jquery']);
+        $process[] = new Process(['npm', 'install', '@fortawesome/fontawesome-free']);
 
         $this->runProcessAndEchoMessage($process);
 
