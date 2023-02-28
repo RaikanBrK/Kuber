@@ -3,10 +3,12 @@
 namespace Kuber\Providers;
 
 use Illuminate\Support\Facades\Route;
+use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
+use Kuber\Http\Controllers\AdminLoginController;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
 
-class ServiceProvider extends SupportServiceProvider
+class KuberServiceProvider extends SupportServiceProvider
 {
     /**
      * The prefix to use for register/load the package resources.
@@ -34,10 +36,38 @@ class ServiceProvider extends SupportServiceProvider
         $this->registerCommands();
         $this->loadRoutes();
     }
-
-    private function packagePath($path)
+    
+    private function packagePath($path): string
     {
         return __DIR__."/../../$path";
+    }
+
+    private function publish(): void
+    {
+        $this->publishConfigs();
+        $this->publishMigrations();
+        $this->publishModels();
+    }
+
+    private function publishConfigs(): void
+    {
+        $this->publishes([
+            $this->packagePath('config/auth.php') => config_path('auth.php'),
+        ], 'kuber-auth-config');
+    }
+
+    private function publishMigrations(): void
+    {
+        $this->publishes([
+            $this->packagePath('database/migrations/') => database_path('migrations')
+        ], 'kuber-auth-migrations');
+    }
+
+    private function publishModels(): void
+    {
+        $this->publishes([
+            $this->packagePath('src/Models/') => app_path() . '/Models',
+        ], 'kuber-auth-models');
     }
 
     private function loadViews(): void
@@ -46,24 +76,23 @@ class ServiceProvider extends SupportServiceProvider
         $this->loadViewsFrom($viewsPath, $this->prefix);
     }
 
-    public function loadTranslations(): void
+    private function loadTranslations(): void
     {
         $translationsPath = $this->packagePath('resources/lang');
         $this->loadTranslationsFrom($translationsPath, $this->prefix);
     }
 
-    public function registerCommands(): void
+    private function registerCommands(): void
     {
         $this->commands([
             KuberDependencyInstallCommand::class,
+            KuberInstallCommand::class,
         ]);
     }
 
-    public function loadRoutes(): void
+    private function loadRoutes(): void
     {
         $routesPath = $this->packagePath('routes/web.php');
         $this->loadRoutesFrom($routesPath);
-    }
-
-    
+    }    
 }

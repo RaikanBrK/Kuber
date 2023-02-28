@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Kuber\Http\Controllers\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ $routesCfgAdmin = [
 ];
 
 Route::group($routesCfgAdmin, function () {
+    Route::get('/login', [AdminLoginController::class, 'index']);
     Route::get('/dashboard', function () {
         return view('kuber::admin.home');
     });

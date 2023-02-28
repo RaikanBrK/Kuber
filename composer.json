@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Kuber\\Providers\\ServiceProvider"
+                "Kuber\\Providers\\KuberServiceProvider"
             ]
         }
     },
