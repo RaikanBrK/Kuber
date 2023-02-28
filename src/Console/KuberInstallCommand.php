@@ -30,6 +30,9 @@ class KuberInstallCommand extends Command
         $process1 = new Process(['php', 'artisan', 'kuber:install-dependency']);
         $process1->run();
 
+        $process2 = new Process(['npm', 'install', ' bootstrap sass --dev']);
+        $process2->run();
+
         ProcessFacades::run('php artisan vendor:publish --tag=kuber-auth-config --tag=kuber-auth-migrations --tag=kuber-auth-models --force');
 
         $this->info('Ferramentas do kuber instaladas com sucesso.');

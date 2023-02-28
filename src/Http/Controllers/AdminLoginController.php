@@ -11,6 +11,6 @@ class AdminLoginController extends Controller
     
     public function index()
     {
-        return 'Index Admin Kuber';
+        return view('kuber::admin.login');
     }
 }
