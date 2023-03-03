@@ -7,6 +7,7 @@ use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
 use Kuber\Http\Controllers\AdminLoginController;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
+use Kuber\View\Components\Form;
 
 class KuberServiceProvider extends SupportServiceProvider
 {
@@ -16,6 +17,16 @@ class KuberServiceProvider extends SupportServiceProvider
      * @var string
      */
     protected $prefix = 'kuber';
+
+    /**
+     * Array with the available form components.
+     *
+     * @var array
+     */
+    protected $formComponents = [
+        'button-rounded' => Form\ButtonRounded::class,
+        'input-rounded' => Form\InputRounded::class,
+    ];
 
     /**
      * Register any application services.
@@ -36,6 +47,7 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->loadTranslations();
         $this->registerCommands();
         $this->loadRoutes();
+        $this->loadComponents();
     }
     
     private function packagePath($path): string
@@ -50,8 +62,11 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->packagePath('database/migrations/') => database_path('migrations'),
             $this->packagePath('src/Models/') => app_path() . '/Models',
             $this->packagePath('vite.config.js') => app_path() . '/../vite.config.js',
-            $this->packagePath('resources/sass/') => app_path() . '/../resources/sass/',
-            $this->packagePath('resources/js/') => app_path() . '/../resources/js/',
+            $this->packagePath('resources/sass/app.scss') => app_path() . '/../resources/sass/app.scss',
+            $this->packagePath('resources/js/app.js') => app_path() . '/../resources/js/app.js',
+            $this->packagePath('public/css') => app_path() . '/../public/vendor/kuber/css/',
+            $this->packagePath('public/js') => app_path() . '/../public/vendor/kuber/js/',
+            $this->packagePath('public/images') => app_path() . '/../public/vendor/kuber/images/',
         ], 'kuber-assets');
     }
 
@@ -79,5 +94,28 @@ class KuberServiceProvider extends SupportServiceProvider
     {
         $routesPath = $this->packagePath('routes/web.php');
         $this->loadRoutesFrom($routesPath);
-    }    
+    }
+
+    public function loadComponents()
+    {
+        // Support of x-components is only available for Laravel >= 7.x
+        // versions. So, we check if we can load components.
+
+        $canLoadComponents = method_exists(
+            'Illuminate\Support\ServiceProvider',
+            'loadViewComponentsAs'
+        );
+
+        if (! $canLoadComponents) {
+            return;
+        }
+
+        // Load all the blade-x components.
+
+        $components = array_merge(
+            $this->formComponents,
+        );
+
+        $this->loadViewComponentsAs($this->prefix, $components);
+    }
 }

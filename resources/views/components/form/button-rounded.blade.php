@@ -1,0 +1,1 @@
+<button class="btn btn-primary btn-auth-rounded mt-4 {{ $class }}">{{ $text }}</button>

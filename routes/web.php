@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Kuber\Http\Controllers\AdminLoginController;
+use Kuber\Http\Controllers\Admin\Auth\AdminLoginController;
+use Kuber\Http\Controllers\Admin\Auth\ResetPasswordController;
+use Kuber\Http\Controllers\Admin\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,11 @@ $routesCfgAdmin = [
 ];
 
 Route::group($routesCfgAdmin, function () {
-    Route::get('/login', [AdminLoginController::class, 'index']);
-    Route::get('/dashboard', function () {
-        return view('kuber::admin.home');
+    Route::get('dashboard', function () {
+        return 'dashboard';
     });
+
+    Route::get('login', [AdminLoginController::class, 'index'])->name('login');
+    Route::get('forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
+    Route::get('reset-password', [ResetPasswordController::class, 'index'])->name('reset-password');
 });
-
-
