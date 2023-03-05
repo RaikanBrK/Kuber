@@ -59,6 +59,7 @@ class KuberServiceProvider extends SupportServiceProvider
     {
         $this->publishes([
             $this->packagePath('config/auth.php') => config_path('auth.php'),
+            $this->packagePath('config/kuber.php') => config_path('kuber.php'),
             $this->packagePath('database/migrations/') => database_path('migrations'),
             $this->packagePath('database/seeders/') => database_path('seeders'),
             $this->packagePath('src/Models/') => app_path() . '/Models',
