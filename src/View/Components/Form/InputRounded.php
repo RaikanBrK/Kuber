@@ -11,7 +11,7 @@ class InputRounded extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $type, public $name = null, public $label = null, public $placeholder, public $description, public $icon = 'user', public $formGroup = '')
+    public function __construct(public $type, public $name = null, public $label = null, public $placeholder, public $description, public $value = '', public $icon = 'user', public $formGroup = '')
     {
     }
 

@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('kuber::admin.auth.reset-password');
+        return view('kuber::admin.auth.reset-password', ['email' => $request->email]);
     }
 }

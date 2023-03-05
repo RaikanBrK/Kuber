@@ -11,7 +11,7 @@
             <h1 class="title-auth">{{ __('kuber::admin/auth/reset-password.title_auth') }}</h1>
     
             <form action="#" class="mt-5">
-                <x-kuber-input-rounded type="email" name="email" label="{{ __('kuber::admin/auth/reset-password.email.label') }}" placeholder="{{ __('kuber::admin/auth/reset-password.email.placeholder') }}" description="{{ __('kuber::admin/auth/reset-password.email.description') }}" icon="user" />
+                <x-kuber-input-rounded type="email" name="email" label="{{ __('kuber::admin/auth/reset-password.email.label') }}" placeholder="{{ __('kuber::admin/auth/reset-password.email.placeholder') }}" description="{{ __('kuber::admin/auth/reset-password.email.description') }}" icon="user" value="{{ $email }}" />
 
                 <x-kuber-input-rounded type="password" name="password" label="{{ __('kuber::admin/auth/reset-password.password.label') }}" placeholder="{{ __('kuber::admin/auth/reset-password.password.placeholder') }}" description="{{ __('kuber::admin/auth/reset-password.password.description') }}" icon="unlock-alt" formGroup="mt-4" />
 

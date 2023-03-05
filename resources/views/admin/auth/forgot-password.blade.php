@@ -12,7 +12,9 @@
 
             <p class="mb-0 mt-3">{{ __('kuber::admin/auth/forgot-password.text_help') }}</p>
     
-            <form action="#" class="mt-5">
+            <form action="{{ route('admin.forgot-password.store') }}" method="post" class="mt-5">
+                @csrf
+                
                 <x-kuber-input-rounded type="email" name="email" label="{{ __('kuber::admin/auth/auth.email.label') }}" placeholder="{{ __('kuber::admin/auth/auth.email.placeholder') }}" description="{{ __('kuber::admin/auth/auth.email.description') }}" icon="user" />
                 
                 <x-kuber-button-rounded text="{{ __('kuber::admin/auth/forgot-password.recover_password') }}" />
