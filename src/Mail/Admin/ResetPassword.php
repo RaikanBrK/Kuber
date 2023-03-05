@@ -39,7 +39,7 @@ class ResetPassword extends Mailable
         return new Content(
             markdown: 'kuber::emails.admin.password-reset',
             with: [
-                'url' => route('admin.reset-password', ['token'=> $this->token, 'email' => $this->email]),
+                'url' => route('admin.reset-password', ['token' => $this->token, 'email' => $this->email]),
                 'name' => $this->name
             ],
         );
