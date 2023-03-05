@@ -25,7 +25,7 @@ $routesCfgAdmin = [
 Route::group($routesCfgAdmin, function () {
     Route::get('dashboard', function () {
         return 'dashboard';
-    });
+    })->name('dashboard');
 
     Route::get('login', [AdminLoginController::class, 'index'])->name('login');
     Route::post('login', [AdminLoginController::class, 'store'])->name('login.store');
