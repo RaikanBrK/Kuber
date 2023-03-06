@@ -41,7 +41,6 @@ class KuberDependencyInstallCommand extends Command
     {
         $process = array();
         $process[] = new Process(['php', 'artisan', 'adminlte:install']);
-        $process[] = new Process(['php', 'artisan', 'ui bootstrap --auth']);
         $process[] = new Process(['npm', 'install', 'bootstrap@4.6']);
         $process[] = new Process(['npm', 'install', '@popperjs/core']);
         $process[] = new Process(['npm', 'install', 'sass']);
