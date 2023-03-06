@@ -14,7 +14,9 @@
                 </div>
                 <div class="col-lg-6 col-form">
                     <div class="card-form">
-                        <h1 class="title-auth">{{ __('kuber::admin/auth/login.title_auth') }}</h1>
+                        <h1 class="title-auth pb-3">{{ __('kuber::admin/auth/login.title_auth') }}</h1>
+
+                        <x-kuber-alert-errors />
 
                         <form action="{{ route('admin.login.store') }}" method="post" class="mt-4">
                             @csrf

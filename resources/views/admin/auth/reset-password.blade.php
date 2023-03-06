@@ -8,9 +8,11 @@
 <div id="box-content" class="one-column">
     <div class="container-fluid">
         <div class="card-form">
-            <h1 class="title-auth">{{ __('kuber::admin/auth/reset-password.title_auth') }}</h1>
+            <h1 class="title-auth mb-3">{{ __('kuber::admin/auth/reset-password.title_auth') }}</h1>
+
+            <x-kuber-alert />
     
-            <form action="{{ route('admin.reset-password.store') }}" method="post" class="mt-5">
+            <form action="{{ route('admin.reset-password.store') }}" method="post" class="pt-3">
                 @csrf
                 
                 <x-kuber-input-rounded type="email" name="email" label="{{ __('kuber::admin/auth/reset-password.email.label') }}" placeholder="{{ __('kuber::admin/auth/reset-password.email.placeholder') }}" description="{{ __('kuber::admin/auth/reset-password.email.description') }}" icon="user" value="{{ $email }}" />

@@ -8,6 +8,7 @@ use Kuber\Console\KuberDependencyInstallCommand;
 use Kuber\Http\Controllers\AdminLoginController;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
 use Kuber\View\Components\Form;
+use Kuber\View\Components\Alerts;
 
 class KuberServiceProvider extends SupportServiceProvider
 {
@@ -26,6 +27,18 @@ class KuberServiceProvider extends SupportServiceProvider
     protected $formComponents = [
         'button-rounded' => Form\ButtonRounded::class,
         'input-rounded' => Form\InputRounded::class,
+    ];
+
+    /**
+     * Array with the available form components.
+     *
+     * @var array
+     */
+    protected $alertComponents = [
+        'alert' => Alerts\Alert::class,
+        'alert-error' => Alerts\AlertError::class,
+        'alert-errors' => Alerts\AlertErrors::class,
+        'alert-info' => Alerts\AlertInfo::class,
     ];
 
     /**
@@ -64,6 +77,7 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->packagePath('database/seeders/') => database_path('seeders'),
             $this->packagePath('src/Models/') => app_path() . '/Models',
             $this->packagePath('vite.config.js') => app_path() . '/../vite.config.js',
+            $this->packagePath('resources/lang_public/') => app_path() . '/../resources/lang/',
             $this->packagePath('resources/sass/app.scss') => app_path() . '/../resources/sass/app.scss',
             $this->packagePath('resources/js/app.js') => app_path() . '/../resources/js/app.js',
             $this->packagePath('public/css') => app_path() . '/../public/vendor/kuber/css/',
@@ -116,6 +130,7 @@ class KuberServiceProvider extends SupportServiceProvider
 
         $components = array_merge(
             $this->formComponents,
+            $this->alertComponents,
         );
 
         $this->loadViewComponentsAs($this->prefix, $components);

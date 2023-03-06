@@ -23,6 +23,7 @@ class ResetPasswordController extends Controller
             'token' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password_confirmation' => ['required'],
         ]);
 
         $status = Password::broker('admins')->reset(
@@ -38,8 +39,8 @@ class ResetPasswordController extends Controller
         );
         
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('admin.login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+            ? redirect()->route('admin.login')->withInfo(__($status))
+            : back()->withInput($request->only('email'))
+                    ->withError(__($status));
     }
 }
