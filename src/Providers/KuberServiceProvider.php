@@ -56,13 +56,14 @@ class KuberServiceProvider extends SupportServiceProvider
     public function boot(): void
     {
         $this->publish();
+        $this->loadMigrations();
         $this->loadViews();
         $this->loadTranslations();
         $this->registerCommands();
         $this->loadRoutes();
         $this->loadComponents();
     }
-    
+
     private function packagePath($path): string
     {
         return __DIR__."/../../$path";
@@ -73,7 +74,6 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->publishes([
             $this->packagePath('config/auth.php') => config_path('auth.php'),
             $this->packagePath('config/kuber.php') => config_path('kuber.php'),
-            $this->packagePath('database/migrations/') => database_path('migrations'),
             $this->packagePath('database/seeders/') => database_path('seeders'),
             $this->packagePath('src/Models/') => app_path() . '/Models',
             $this->packagePath('src/Providers/RouteServiceProvider.php') => app_path() . '/Providers/RouteServiceProvider.php',
@@ -87,6 +87,11 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->packagePath('public/js') => app_path() . '/../public/vendor/kuber/js/',
             $this->packagePath('public/images') => app_path() . '/../public/vendor/kuber/images/',
         ], 'kuber-assets');
+    }
+
+    private function loadMigrations(): void
+    {
+        $this->loadMigrationsFrom($this->packagePath('database/migrations'));
     }
 
     private function loadViews(): void
