@@ -23,9 +23,11 @@ $routesCfgAdmin = [
 ];
 
 Route::group($routesCfgAdmin, function () {
-    Route::get('dashboard', function () {
-        return 'dashboard';
-    })->name('dashboard');
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('dashboard', function () {
+            return 'dashboard';
+        })->name('dashboard');
+    });
 
     Route::middleware(['guest:admin'])->group(function () {
         Route::get('login', [AdminLoginController::class, 'index'])->name('login');

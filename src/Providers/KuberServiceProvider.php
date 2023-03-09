@@ -78,6 +78,7 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->packagePath('src/Models/') => app_path() . '/Models',
             $this->packagePath('src/Providers/RouteServiceProvider.php') => app_path() . '/Providers/RouteServiceProvider.php',
             $this->packagePath('src/Http/Middleware/RedirectIfAuthenticated.php') => app_path() . '/Http/Middleware/RedirectIfAuthenticated.php',
+            $this->packagePath('src/Http/Middleware/Authenticate.php') => app_path() . '/Http/Middleware/Authenticate.php',
             $this->packagePath('vite.config.js') => app_path() . '/../vite.config.js',
             $this->packagePath('resources/lang_public/') => app_path() . '/../resources/lang/',
             $this->packagePath('resources/sass/app.scss') => app_path() . '/../resources/sass/app.scss',
