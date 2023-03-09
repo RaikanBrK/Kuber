@@ -27,10 +27,12 @@ Route::group($routesCfgAdmin, function () {
         return 'dashboard';
     })->name('dashboard');
 
-    Route::get('login', [AdminLoginController::class, 'index'])->name('login');
-    Route::post('login', [AdminLoginController::class, 'store'])->name('login.store');
-    Route::get('forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
-    Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('forgot-password.store');
-    Route::get('reset-password/{token}', [ResetPasswordController::class, 'index'])->name('reset-password');
-    Route::post('reset-password', [ResetPasswordController::class, 'store'])->name('reset-password.store');
+    Route::middleware(['guest:admin'])->group(function () {
+        Route::get('login', [AdminLoginController::class, 'index'])->name('login');
+        Route::post('login', [AdminLoginController::class, 'store'])->name('login.store');
+        Route::get('forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
+        Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->name('forgot-password.store');
+        Route::get('reset-password/{token}', [ResetPasswordController::class, 'index'])->name('reset-password');
+        Route::post('reset-password', [ResetPasswordController::class, 'store'])->name('reset-password.store'); 
+    });
 });
