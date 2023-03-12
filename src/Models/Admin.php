@@ -48,4 +48,19 @@ class Admin extends Authenticatable
     {
         Mail::to($this->email)->queue(new ResetPassword($token, $this->name, $this->email));
     }
+
+    public function adminlte_image()
+    {
+        return 'https://picsum.photos/300/300';
+    }
+
+    public function adminlte_desc()
+    {
+        return 'That\'s a nice guy';
+    }
+
+    public function adminlte_profile_url()
+    {
+        return 'profile/username';
+    }
 }

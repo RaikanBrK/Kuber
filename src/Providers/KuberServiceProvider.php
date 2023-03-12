@@ -74,18 +74,23 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->publishes([
             $this->packagePath('config/auth.php') => config_path('auth.php'),
             $this->packagePath('config/kuber.php') => config_path('kuber.php'),
+            $this->packagePath('config/adminlte.php') => config_path('adminlte.php'),
             $this->packagePath('database/seeders/') => database_path('seeders'),
             $this->packagePath('src/Models/') => app_path() . '/Models',
             $this->packagePath('src/Providers/RouteServiceProvider.php') => app_path() . '/Providers/RouteServiceProvider.php',
             $this->packagePath('src/Http/Middleware/RedirectIfAuthenticated.php') => app_path() . '/Http/Middleware/RedirectIfAuthenticated.php',
             $this->packagePath('src/Http/Middleware/Authenticate.php') => app_path() . '/Http/Middleware/Authenticate.php',
             $this->packagePath('vite.config.js') => app_path() . '/../vite.config.js',
-            $this->packagePath('resources/lang_public/') => app_path() . '/../resources/lang/',
-            $this->packagePath('resources/sass/app.scss') => app_path() . '/../resources/sass/app.scss',
-            $this->packagePath('resources/js/app.js') => app_path() . '/../resources/js/app.js',
-            $this->packagePath('public/css') => app_path() . '/../public/vendor/kuber/css/',
-            $this->packagePath('public/js') => app_path() . '/../public/vendor/kuber/js/',
-            $this->packagePath('public/images') => app_path() . '/../public/vendor/kuber/images/',
+
+            $this->packagePath('resources/public/sass/') => app_path() . '/../resources/sass/',
+            $this->packagePath('resources/public/js/') => app_path() . '/../resources/js/',
+
+            $this->packagePath('resources/public/lang/') => app_path() . '/../resources/lang/',
+            $this->packagePath('resources/public/views/') => app_path() . '/../resources/views/',
+
+            $this->packagePath('public/css/') => app_path() . '/../public/vendor/kuber/css/',
+            $this->packagePath('public/js/') => app_path() . '/../public/vendor/kuber/js/',
+            $this->packagePath('public/images/') => app_path() . '/../public/vendor/kuber/images/',           
         ], 'kuber-assets');
     }
 

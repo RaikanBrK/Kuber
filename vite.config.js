@@ -12,6 +12,7 @@ export default defineConfig({
                 
                 // Sass
                 'resources/sass/app.scss',
+                'resources/sass/adminlte.scss',
 
                 // JavaScript
                 'resources/js/app.js',
