@@ -10,6 +10,7 @@ use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
 use Kuber\Http\Controllers\AdminLoginController;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
+use Kuber\Console\KuberPublishCommand;
 
 class KuberServiceProvider extends SupportServiceProvider
 {
@@ -132,6 +133,7 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->commands([
             KuberDependencyInstallCommand::class,
             KuberInstallCommand::class,
+            KuberPublishCommand::class,
         ]);
     }
 

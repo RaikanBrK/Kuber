@@ -42,10 +42,9 @@ class KuberInstallCommand extends Command
     {
         $process = array();
         $process[] = new Process(['php', 'artisan', 'kuber:install-dependency']);
+        $process[] = new Process(['php', 'artisan', 'kuber:publish']);
 
         $this->runProcessAndEchoMessage($process);
-
-        ProcessFacades::run('php artisan vendor:publish --tag=kuber-assets --force');
 
         $this->info('Ferramentas do kuber instaladas com sucesso.');
     }
