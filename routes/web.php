@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Kuber\Http\Controllers\Admin\DashboardController;
+use Kuber\Http\Controllers\Admin\AdministratorController;
 use Kuber\Http\Controllers\Admin\Auth\AdminLoginController;
 use Kuber\Http\Controllers\Admin\Auth\ResetPasswordController;
 use Kuber\Http\Controllers\Admin\Auth\ForgotPasswordController;
@@ -26,6 +27,7 @@ $routesCfgAdmin = [
 Route::group($routesCfgAdmin, function () {
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('administrators', AdministratorController::class)->except('show');
     });
 
     Route::middleware(['guest:admin'])->group(function () {

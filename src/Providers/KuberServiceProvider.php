@@ -2,13 +2,14 @@
  
 namespace Kuber\Providers;
 
+use Kuber\View\Components\Form;
+use Kuber\View\Components\Alerts;
+use Kuber\View\Components\Tables;
 use Illuminate\Support\Facades\Route;
 use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
 use Kuber\Http\Controllers\AdminLoginController;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
-use Kuber\View\Components\Form;
-use Kuber\View\Components\Alerts;
 
 class KuberServiceProvider extends SupportServiceProvider
 {
@@ -34,11 +35,20 @@ class KuberServiceProvider extends SupportServiceProvider
      *
      * @var array
      */
-    protected $alertComponents = [
+    protected $alertsComponents = [
         'alert' => Alerts\Alert::class,
         'alert-error' => Alerts\AlertError::class,
         'alert-errors' => Alerts\AlertErrors::class,
         'alert-info' => Alerts\AlertInfo::class,
+    ];
+
+    /**
+     * Array with the available form components.
+     *
+     * @var array
+     */
+    protected $tablesComponents = [
+        'datatables' => Tables\Datatables::class,
     ];
 
     /**
@@ -143,7 +153,8 @@ class KuberServiceProvider extends SupportServiceProvider
 
         $components = array_merge(
             $this->formComponents,
-            $this->alertComponents,
+            $this->alertsComponents,
+            $this->tablesComponents,
         );
 
         $this->loadViewComponentsAs($this->prefix, $components);
