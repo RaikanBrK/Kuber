@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '',
-    'logo_img' => 'images/logo.webp',
+    'logo_img' => 'vendor/kuber/images/logo.webp',
     'logo_img_class' => 'brand-image',
     'logo_img_xl' => false,
     'logo_img_xl_class' => 'brand-image-xs',

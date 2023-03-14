@@ -2,12 +2,18 @@
 
 namespace Kuber\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\Admin\AdminRepository;
+use Kuber\Http\Requests\Admin\AdminCreateRequest;
 
 class AdministratorController extends Controller
 {
+    public function __construct(private AdminRepository $repository)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -24,15 +30,14 @@ class AdministratorController extends Controller
      */
     public function create()
     {
-        //
+        return view('kuber::admin.administrators.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(AdminCreateRequest $request)
     {
-        //
+        $this->repository->create($request);
+
+        return to_route('admin.administrators.create')->withSuccess(__('admin/administrators/create.user_create'));
     }
 
     /**

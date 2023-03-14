@@ -7,7 +7,9 @@
 @endsection
 
 @section('content')
-    <x-adminlte-card :title="__('kuber::admin/administrators/index.title')" theme="lightblue">
-        <x-kuber-datatables :head="$head" :items="$users" action :exceptActions="['viewer']" />
-    </x-adminlte-card>
+    <div class="container-fluid">
+        <x-adminlte-card :title="__('kuber::admin/administrators/index.title')" theme="lightblue">
+            <x-kuber-datatables :head="$head" :items="$users" action :exceptActions="['viewer']" />
+        </x-adminlte-card>
+    </div>
 @endsection
