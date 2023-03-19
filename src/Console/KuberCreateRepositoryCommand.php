@@ -157,12 +157,18 @@ class KuberCreateRepositoryCommand extends Command
 
         $string = '/* Repositories Service Providers... */';
 
-        $appConfigContent = str_replace(
-            $string,
-            "{$string} \n        " . $providerClass . ",",
-            $appConfigContent
-        );
+        $classExist = strpos($appConfigContent, $providerClass);
 
-        file_put_contents($appConfigPath, $appConfigContent);
+        if ($classExist == false) {
+            $appConfigContent = str_replace(
+                $string,
+                "{$string} \n        " . $providerClass . ",",
+                $appConfigContent
+            );
+    
+            file_put_contents($appConfigPath, $appConfigContent);
+        } else {
+            $this->info('Classe já foi importada anteriormente');
+        }        
     }
 }
