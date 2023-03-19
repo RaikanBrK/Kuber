@@ -37,7 +37,7 @@ class AdministratorController extends Controller
     {
         $this->repository->create($request);
 
-        return to_route('admin.administrators.create')->withSuccess(__('admin/administrators/create.user_create'));
+        return to_route('admin.administrators.create')->withToast_success(__('kuber::admin/administrators/create.user_create'));
     }
 
     /**
