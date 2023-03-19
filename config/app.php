@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\AdminRepositoryProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -197,9 +196,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         
-        /*
-         * Repositories Service Providers...
-         */
+        /* Repositories Service Providers... */
         Kuber\Providers\Repositories\AdminRepositoryProvider::class,
     ],
 

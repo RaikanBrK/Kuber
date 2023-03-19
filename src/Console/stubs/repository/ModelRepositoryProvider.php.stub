@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Providers\Repositories;
+
+use App\Repositories\{{name}}\{{name}}Repository;
+use App\Repositories\{{name}}\Eloquent{{name}}Repository;
+use Illuminate\Support\ServiceProvider;
+
+class {{name}}RepositoryProvider extends ServiceProvider
+{
+    public array $bindings = [
+        {{name}}Repository::class => Eloquent{{name}}Repository::class
+    ];
+}
