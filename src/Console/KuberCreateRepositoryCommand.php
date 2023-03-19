@@ -74,17 +74,23 @@ class KuberCreateRepositoryCommand extends Command
      * Recuperar caminho e sobrescrever arquivo caso exista
      *
      * @param String $dir
+     * @param String $fileName
      * @return string
      */
-    private function getFileForce(String $dir): string
+    private function getFileForce(String $dir, String $fileName): string
     {
         $path = app_path($dir);
+        $file = $path . $fileName;
 
-        if (File::exists($path)) {
-            File::delete($path);
+        if (File::exists($path) == false) {
+            File::makeDirectory($path);
         }
 
-        return $path;
+        if (File::exists($file)) {
+            File::delete($file);
+        }
+
+        return $file;
     }
 
     /**
@@ -140,7 +146,7 @@ class KuberCreateRepositoryCommand extends Command
         $nameFile = str_replace("Model", $this->model, $file);
         $nameFile .= ".php";
 
-        $pathFile = $this->getFileForce('Providers/Repositories/' . $nameFile);
+        $pathFile = $this->getFileForce('Providers/Repositories/', $nameFile);
 
         file_put_contents($pathFile, $content);
 
