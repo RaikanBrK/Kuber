@@ -18,29 +18,14 @@ class EloquentAdminRepository implements AdminRepository
         ]);
     }
 
-    public function update($id, $request, $imagePath = false): Admin
+    public function update($admin, $request): Admin
     {
-        $user = Admin::find($id);
+        $admin->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->gender_id = $request->gender;
-        
-        if($user->desc() != $request->desc) {
-            $user->description = $request->desc;
-        }
-
-        if ($request->checkBoxChangePassword) {
-            $user->password = Hash::make($request->password);
-        }
-
-        if ($imagePath) {
-            $user->image = $imagePath;
-        }
-
-        $user->save();
-        
-        return $user;
+        return $admin;
     }
 
     public function delete($id)

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\AdminRepository;
 use Kuber\Http\Requests\Admin\AdminCreateRequest;
+use Kuber\Http\Requests\Admin\AdminUpdateRequest;
 
 class AdministratorController extends Controller
 {
@@ -43,17 +44,19 @@ class AdministratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit(Admin $administrator)
     {
-        //
+        return view('kuber::admin.administrators.edit', compact('administrator'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(AdminUpdateRequest $request, Admin $administrator)
     {
-        //
+        $this->repository->update($administrator, $request);
+
+        return to_route('admin.administrators.edit', $administrator)->withToast_success(__('admin/administrators/edit.user_edit'));
     }
 
     /**

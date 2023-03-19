@@ -11,5 +11,5 @@ return [
     'help_info' => 'Other information such as photo, description, etc. can be changed after logging in.',
     'button' => 'Create',
 
-    'user_create' => 'Usuário criado com sucesso',
+    'user_create' => 'Administrator created successfully',
 ];
