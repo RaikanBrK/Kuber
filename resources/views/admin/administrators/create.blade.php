@@ -8,10 +8,9 @@
 
 @section('content')
     <div class="container-fluid">
-        <x-adminlte-card :title="__('kuber::admin/administrators/create.title_card')" theme="lightblue">
-            <form action="{{ route('admin.administrators.store') }}" method="post">
-                @csrf
-
+        <form action="{{ route('admin.administrators.store') }}" method="post">
+            @csrf
+            <x-kuber-card :title="__('kuber::admin/administrators/create.title_card')" send="create">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <label for="name">{{ __('kuber::admin/administrators/create.name') }}</label>
@@ -34,8 +33,7 @@
                     </div>
                 </div>
                 <small class="text-muted">{{ __('kuber::admin/administrators/create.help_info') }}</small>
-                <x-adminlte-button class="d-block ml-auto" type="submit" :label="__('kuber::admin/administrators/create.button')" theme="success" />
-            </form>
-        </x-adminlte-card>
+            </x-kuber-card>
+        </form>
     </div>
 @stop

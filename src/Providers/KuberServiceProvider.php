@@ -5,6 +5,7 @@ namespace Kuber\Providers;
 use Kuber\View\Components\Form;
 use Kuber\View\Components\Alerts;
 use Kuber\View\Components\Tables;
+use Kuber\View\Components\Widget;
 use Illuminate\Support\Facades\Route;
 use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
@@ -52,6 +53,15 @@ class KuberServiceProvider extends SupportServiceProvider
      */
     protected $tablesComponents = [
         'datatables' => Tables\Datatables::class,
+    ];
+
+     /**
+     * Array with the available form components.
+     *
+     * @var array
+     */
+    protected $widgetComponents = [
+        'card' => Widget\Card::class,
     ];
 
     /**
@@ -168,6 +178,7 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->formComponents,
             $this->alertsComponents,
             $this->tablesComponents,
+            $this->widgetComponents,
         );
 
         $this->loadViewComponentsAs($this->prefix, $components);
