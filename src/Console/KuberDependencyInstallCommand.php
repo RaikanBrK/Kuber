@@ -46,6 +46,8 @@ class KuberDependencyInstallCommand extends Command
         $process[] = new Process(['npm', 'install', 'sass']);
         $process[] = new Process(['npm', 'install', 'jquery']);
         $process[] = new Process(['npm', 'install', '@fortawesome/fontawesome-free']);
+        $process[] = new Process(['php', 'artisan', 'sweetalert:publish']);
+        $process[] = new Process(['php', 'artisan', 'kuber:sweet-alert']);
 
         $this->runProcessAndEchoMessage($process);
 

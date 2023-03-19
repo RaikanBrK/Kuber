@@ -11,6 +11,7 @@ use Kuber\Console\KuberDependencyInstallCommand;
 use Kuber\Http\Controllers\AdminLoginController;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
 use Kuber\Console\KuberCreateRepositoryCommand;
+use Kuber\Console\KuberAddSweetAlertCommand;
 use Kuber\Console\KuberPublishCommand;
 
 class KuberServiceProvider extends SupportServiceProvider
@@ -107,6 +108,7 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->packagePath('config/auth.php') => config_path('auth.php'),
             $this->packagePath('config/kuber.php') => config_path('kuber.php'),
             $this->packagePath('config/adminlte.php') => config_path('adminlte.php'),
+            $this->packagePath('config/sweetalert.php') => config_path('sweetalert.php'),
             $this->packagePath('config/app.php') => config_path('app.php'),
 
         ], 'kuber-assets');
@@ -134,6 +136,7 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->commands([
             KuberDependencyInstallCommand::class,
             KuberInstallCommand::class,
+            KuberAddSweetAlertCommand::class,
             KuberPublishCommand::class,
             KuberCreateRepositoryCommand::class,
         ]);
