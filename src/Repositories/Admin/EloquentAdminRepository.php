@@ -3,15 +3,20 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Admin;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Repositories\Admin\AdminRepository;
 
 class EloquentAdminRepository implements AdminRepository
 {
+    protected $model;
+
+    public function __construct(Admin $model)
+    {
+        $this->model = $model;
+    }
+
     public function create($request): Admin
     {
-        return Admin::create([
+        return $this->model->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
