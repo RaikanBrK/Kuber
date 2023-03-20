@@ -56,14 +56,16 @@ class AdministratorController extends Controller
     {
         $this->repository->update($administrator, $request);
 
-        return to_route('admin.administrators.edit', $administrator)->withToast_success(__('admin/administrators/edit.user_edit'));
+        return to_route('admin.administrators.edit', $administrator)->withToast_success(__('kuber::admin/administrators/edit.user_edit'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy(Admin $administrator)
     {
-        //
+        $this->repository->delete($administrator);
+
+        return to_route('admin.administrators.index')->withToast_success(__('kuber::admin/administrators/delete.user_delete'));
     }
 }

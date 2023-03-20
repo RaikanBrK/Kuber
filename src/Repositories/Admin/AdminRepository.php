@@ -7,6 +7,6 @@ use App\Models\Admin;
 interface AdminRepository
 {
     public function create($request): Admin;
-    public function update($admin, $request): Admin;
-    public function delete($id);
+    public function update(Admin $admin, $request): Admin;
+    public function delete(Admin $admin): Array;
 }

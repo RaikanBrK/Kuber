@@ -18,7 +18,7 @@ class EloquentAdminRepository implements AdminRepository
         ]);
     }
 
-    public function update($admin, $request): Admin
+    public function update(Admin $admin, $request): Admin
     {
         $admin->update([
             'name' => $request->name,
@@ -28,10 +28,12 @@ class EloquentAdminRepository implements AdminRepository
         return $admin;
     }
 
-    public function delete($id)
+    public function delete($admin): Array
     {
-        $user = Admin::find($id);
+        $array = $admin->toArray();
         
-        $user->delete();
+        $admin->delete();
+
+        return $array;
     }
 }
