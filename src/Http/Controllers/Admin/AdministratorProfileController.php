@@ -2,11 +2,10 @@
 
 namespace Kuber\Http\Controllers\Admin;
 
-use App\Models\Admin;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\Admin\AdminRepository;
+use Kuber\Http\Requests\Admin\AdminProfileUpdateRequest;
 
 class AdministratorProfileController extends Controller
 {
@@ -24,10 +23,10 @@ class AdministratorProfileController extends Controller
         return view('kuber::admin.profile.index', compact('administrator'));
     }
 
-    public function store(Request $request)
+    public function store(AdminProfileUpdateRequest $request)
     {
-        //
-    }
+        $this->repository->updateProfile($request);
 
-    
+        return to_route('admin.profile.index');
+    }    
 }

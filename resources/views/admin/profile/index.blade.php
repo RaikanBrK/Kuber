@@ -8,10 +8,8 @@
 
 @section('content')
     <div class="container-fluid">
-        <form action="{{ route('admin.profile.store', $administrator->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
-            <input type="hidden" name="user_id" value="{{ $administrator->id }}">
             <x-kuber-card :title="__('kuber::admin/profile/index.title_card')" send="save">
                 <div class="form-row mb-2">
                     <div class="col-12 col-sm-auto pr-sm-4">

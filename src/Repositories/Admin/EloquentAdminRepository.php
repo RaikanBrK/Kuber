@@ -3,6 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EloquentAdminRepository implements AdminRepository
@@ -40,5 +41,18 @@ class EloquentAdminRepository implements AdminRepository
         $admin->delete();
 
         return $array;
+    }
+
+    public function updateProfile($request): Admin
+    {
+        $admin = $this->model->find(Auth::guard('admin')->id());
+
+        $admin->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'description' => $request->desc,
+        ]);
+
+        return $admin;
     }
 }
