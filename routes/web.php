@@ -6,6 +6,7 @@ use Kuber\Http\Controllers\Admin\AdministratorController;
 use Kuber\Http\Controllers\Admin\Auth\AdminLoginController;
 use Kuber\Http\Controllers\Admin\Auth\ResetPasswordController;
 use Kuber\Http\Controllers\Admin\Auth\ForgotPasswordController;
+use Kuber\Http\Controllers\Admin\AdministratorProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::group($routesCfgAdmin, function () {
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('administrators', AdministratorController::class)->except('show');
+        Route::get('profile', [AdministratorProfileController::class, 'index'])->name('profile.index');
+        Route::post('profile', [AdministratorProfileController::class, 'store'])->name('profile.store');
     });
 
     Route::middleware(['guest:admin'])->group(function () {

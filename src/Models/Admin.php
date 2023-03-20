@@ -53,16 +53,26 @@ class Admin extends Authenticatable
 
     public function adminlte_image()
     {
-        return 'https://picsum.photos/300/300';
+        return asset($this->image());
+    }
+
+    public function image()
+    {
+        return $this->image ?? config('kuber.admin_image_default');
     }
 
     public function adminlte_desc()
     {
-        return 'That\'s a nice guy';
+        return $this->desc();
+    }
+
+    public function desc()
+    {
+        return $this->description ?? __(config('kuber.admin_desc_default'));
     }
 
     public function adminlte_profile_url()
     {
-        return 'profile/username';
+        return 'admin/profile';
     }
 }

@@ -6,3 +6,8 @@
 	display: flex;
 	justify-content: center;
 }
+
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+	max-height: 500px;
+	height: auto;
+}
