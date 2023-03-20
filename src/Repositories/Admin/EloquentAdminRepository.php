@@ -43,15 +43,24 @@ class EloquentAdminRepository implements AdminRepository
         return $array;
     }
 
-    public function updateProfile($request): Admin
+    public function updateProfile($request, $image): Admin
     {
         $admin = $this->model->find(Auth::guard('admin')->id());
 
-        $admin->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'description' => $request->desc,
-        ]);
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+
+        if ($request->desc == __(config('kuber.admin_desc_default'))) {
+            $admin->description = null;
+        } else {
+            $admin->description = $request->desc;
+        }
+
+        if ($image) {
+            $admin->image = $image;
+        }
+
+        $admin->save();
 
         return $admin;
     }

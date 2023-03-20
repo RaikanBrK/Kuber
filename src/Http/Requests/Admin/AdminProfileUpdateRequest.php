@@ -29,6 +29,7 @@ class AdminProfileUpdateRequest extends FormRequest
             'name' => ['required', 'min:3', 'max:255'],
             'email' => ['required', Rule::unique('admins')->ignore(Auth::guard('admin')->id()), 'min:4', 'max:255'],
             'desc' => ['nullable', 'max:255'],
+            'image' => ['image', 'nullable', 'mimes:png,jpg,jpeg', 'max:2048'],
         ];
     }
 }

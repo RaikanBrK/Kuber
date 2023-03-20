@@ -58,7 +58,7 @@ class Admin extends Authenticatable
 
     public function image()
     {
-        return $this->image ?? config('kuber.admin_image_default');
+        return $this->image ? 'storage/' . $this->image : config('kuber.admin_image_default');
     }
 
     public function adminlte_desc()

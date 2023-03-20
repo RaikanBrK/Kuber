@@ -10,5 +10,5 @@ interface AdminRepository
     public function update(Admin $admin, $request): Admin;
     public function delete(Admin $admin): Array;
 
-    public function updateProfile($request): Admin;
+    public function updateProfile($request, $image): Admin;
 }
