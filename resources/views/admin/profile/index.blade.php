@@ -6,13 +6,17 @@
     <h1>{{ __('kuber::admin/profile/index.title_pag', ['name' => $administrator->name]) }}</h1>
 @stop
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('vendor/kuber/css/admin/profile/index.css') }}">
+@stop
+
 @section('content')
     <div class="container-fluid">
         <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <x-kuber-card :title="__('kuber::admin/profile/index.title_card')" send="save">
                 <div class="form-row mb-2">
-                    <div class="col-12 col-sm-auto pr-sm-4">
+                    <div class="col-12 col-md-auto pr-sm-4">
                         <div class="form-group">
                             <label for="campoImageProfile" id="labelImageProfile"
                                 class="d-flex flex-column align-items-center">
@@ -36,10 +40,30 @@
                                     placeholder="{{ $administrator->email }}" value="{{ $administrator->email }}">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="desc">{{ __('kuber::admin/profile/index.desc') }}</label>
-                            <input type="text" class="form-control" id="desc" name="desc"
-                                placeholder="{{ $administrator->desc() }}" value="{{ $administrator->desc() }}">
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <label for="desc">{{ __('kuber::admin/profile/index.desc') }}</label>
+                                <input type="text" class="form-control" id="desc" name="desc"
+                                    placeholder="{{ $administrator->desc() }}" value="{{ $administrator->desc() }}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkBoxChangePassword" name="checkBoxChangePassword">
+                                    <label class="custom-control-label" for="checkBoxChangePassword">Alterar Senha</label>
+                                </div>
+                            </div>
+                            <div class="form-row col-12 d-none" id="changePassword">
+                                <div class="form-group col-md-6">
+                                    <label for="password">Senha</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="password_confirmation">Confirmar Senha</label>
+                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,4 +73,5 @@
 @stop
 
 @push('js')
+    <script src="{{ asset('vendor/kuber/js/admin/profile/index.js') }}"></script>
 @endpush
