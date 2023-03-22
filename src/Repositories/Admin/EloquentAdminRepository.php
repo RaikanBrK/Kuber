@@ -56,6 +56,10 @@ class EloquentAdminRepository implements AdminRepository
             $admin->description = $request->desc;
         }
 
+        if ($request->checkBoxChangePassword) {
+            $admin->password = Hash::make($request->password);
+        }
+
         if ($image) {
             $admin->image = $image;
         }

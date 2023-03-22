@@ -9,5 +9,9 @@ return [
     'label_image' => 'Click to change',
     'name' => 'Name',
     'email' => 'Email',
+    'password' => 'Password',
     'desc' => 'Description',
+    'password_confirmation' => 'Password Confirmation',
+
+    'checkBoxChangePassword' => 'Change Password',
 ];

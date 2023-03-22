@@ -30,6 +30,14 @@ class AdminProfileUpdateRequest extends FormRequest
             'email' => ['required', Rule::unique('admins')->ignore(Auth::guard('admin')->id()), 'min:4', 'max:255'],
             'desc' => ['nullable', 'max:255'],
             'image' => ['image', 'nullable', 'mimes:png,jpg,jpeg', 'max:2048'],
+            'password' => ['required_if:checkBoxChangePassword,on', 'confirmed', 'min:8', 'max:255', 'nullable'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password.required_if' => 'O campo :attribute é obrigatório quando o campo :other for selecionado.',
         ];
     }
 }
