@@ -327,15 +327,10 @@ return [
             'url'  => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'user_preferences',
-            'url'  => 'admin/profile/settings',
-            'icon' => 'fas fa-fw fa-user-cog',
-        ],
         ['header' => 'site_settings'],
         [
             'text' => 'general_settings',
-            'url'  => '/admin/settings',
+            'url'  => '/admin/settings/site',
             'icon' => 'fas fa-fw fa-cog',
         ],
         [

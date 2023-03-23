@@ -6,14 +6,13 @@ use Kuber\View\Components\Form;
 use Kuber\View\Components\Alerts;
 use Kuber\View\Components\Tables;
 use Kuber\View\Components\Widget;
-use Illuminate\Support\Facades\Route;
 use Kuber\Console\KuberInstallCommand;
-use Kuber\Console\KuberDependencyInstallCommand;
-use Kuber\Http\Controllers\AdminLoginController;
-use Illuminate\Support\ServiceProvider as SupportServiceProvider;
-use Kuber\Console\KuberCreateRepositoryCommand;
-use Kuber\Console\KuberAddSweetAlertCommand;
 use Kuber\Console\KuberPublishCommand;
+use Kuber\Console\KuberAddSettingsCommand;
+use Kuber\Console\KuberAddSweetAlertCommand;
+use Kuber\Console\KuberCreateRepositoryCommand;
+use Kuber\Console\KuberDependencyInstallCommand;
+use Illuminate\Support\ServiceProvider as SupportServiceProvider;
 
 class KuberServiceProvider extends SupportServiceProvider
 {
@@ -85,6 +84,8 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->registerCommands();
         $this->loadRoutes();
         $this->loadComponents();
+
+        $this->app['router']->pushMiddlewareToGroup('web', \Kuber\Http\Middleware\AddSettings::class);
     }
 
     private function packagePath($path): string
@@ -100,6 +101,7 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->packagePath('src/Providers/RouteServiceProvider.php') => app_path() . '/Providers/RouteServiceProvider.php',
             $this->packagePath('src/Http/Middleware/RedirectIfAuthenticated.php') => app_path() . '/Http/Middleware/RedirectIfAuthenticated.php',
             $this->packagePath('src/Http/Middleware/Authenticate.php') => app_path() . '/Http/Middleware/Authenticate.php',
+            $this->packagePath('src/Http/Middleware/AddSettings.php') => app_path() . '/Http/Middleware/AddSettings.php',
 
             $this->packagePath('src/Repositories/') => app_path() . '/Repositories/',
 
