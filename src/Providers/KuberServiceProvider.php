@@ -84,8 +84,7 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->registerCommands();
         $this->loadRoutes();
         $this->loadComponents();
-
-        $this->app['router']->pushMiddlewareToGroup('web', \Kuber\Http\Middleware\AddSettings::class);
+        $this->loadMiddleware();
     }
 
     private function packagePath($path): string
@@ -148,7 +147,6 @@ class KuberServiceProvider extends SupportServiceProvider
         $this->commands([
             KuberDependencyInstallCommand::class,
             KuberInstallCommand::class,
-            KuberAddSweetAlertCommand::class,
             KuberPublishCommand::class,
             KuberCreateRepositoryCommand::class,
         ]);
@@ -162,9 +160,6 @@ class KuberServiceProvider extends SupportServiceProvider
 
     public function loadComponents()
     {
-        // Support of x-components is only available for Laravel >= 7.x
-        // versions. So, we check if we can load components.
-
         $canLoadComponents = method_exists(
             'Illuminate\Support\ServiceProvider',
             'loadViewComponentsAs'
@@ -174,8 +169,6 @@ class KuberServiceProvider extends SupportServiceProvider
             return;
         }
 
-        // Load all the blade-x components.
-
         $components = array_merge(
             $this->formComponents,
             $this->alertsComponents,
@@ -184,5 +177,11 @@ class KuberServiceProvider extends SupportServiceProvider
         );
 
         $this->loadViewComponentsAs($this->prefix, $components);
+    }
+
+    private function loadMiddleware()
+    {
+        $this->app['router']->pushMiddlewareToGroup('web', \Kuber\Http\Middleware\AddSettings::class);
+        $this->app['router']->pushMiddlewareToGroup('web', \RealRashid\SweetAlert\ToSweetAlert::class);
     }
 }
