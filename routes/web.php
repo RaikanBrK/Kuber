@@ -36,6 +36,7 @@ Route::group($routesCfgAdmin, function () {
         Route::prefix('settings')->name('settings.')->group(function () {
             Route::controller(SettingsController::class)->group(function() {
                 Route::get('site', 'index')->name('site.index');
+                Route::post('site', 'store')->name('site.store');
             });
         });
     });

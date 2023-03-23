@@ -198,6 +198,7 @@ return [
         
         /* Repositories Service Providers... */
         Kuber\Providers\Repositories\AdminRepositoryProvider::class,
+        Kuber\Providers\Repositories\SettingsRepositoryProvider::class,
     ],
 
     /*

@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Configurações Gerais')
+@section('title', __('kuber::admin/site/index.title'))
 
 @section('content_header')
-    <h1>Configurações Gerais</h1>
+    <h1>{{ __('kuber::admin/site/index.title') }}</h1>
 @stop
 
 @section('content')
     <div class="container-fluid">
-        <form action="#" method="POST">
+        <form action="{{ route('admin.settings.site.store') }}" method="POST">
             @csrf
-            <x-adminlte-card title="Configurações" theme="lightblue">
+            <x-kuber-card :title="__('kuber::admin/site/index.title_card')" send="save">
                 <div class="form-group">
                     <label for="title">Título</label>
                     <input type="text" class="form-control" required name="title" id="title" placeholder="{{ $settings->title }}" value="{{ $settings->title }}">
@@ -19,10 +19,7 @@
                     <label for="description">Descrição</label>
                     <input type="text" class="form-control" required name="description" id="description" placeholder="{{ $settings->description }}" value="{{ $settings->description }}">
                 </div>
-                <x-slot name="footerSlot">
-                    <x-adminlte-button class="d-block ml-auto" type="submit" label="Salvar" theme="primary" />
-                </x-slot>
-            </x-adminlte-card>
+            </x-kuber-card>
         </form>
     </div>
 @stop
