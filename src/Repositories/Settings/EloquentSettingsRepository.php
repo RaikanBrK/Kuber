@@ -27,4 +27,13 @@ class EloquentSettingsRepository implements SettingsRepository
         ]);
         return $this->settings;
     }
+
+    public function updateTags($request): Settings
+    {
+        $this->settings->update([
+            'head' => $request->head,
+            'body' => $request->body,
+        ]);
+        return $this->settings;
+    }
 }

@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Kuber\Http\Controllers\Admin\SettingsController;
 use Kuber\Http\Controllers\Admin\DashboardController;
+use Kuber\Http\Controllers\Admin\SettingsTagsController;
 use Kuber\Http\Controllers\Admin\AdministratorController;
 use Kuber\Http\Controllers\Admin\Auth\AdminLoginController;
 use Kuber\Http\Controllers\Admin\Auth\ResetPasswordController;
 use Kuber\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use Kuber\Http\Controllers\Admin\AdministratorProfileController;
-use Kuber\Http\Controllers\Admin\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,13 @@ Route::group($routesCfgAdmin, function () {
         Route::post('profile', [AdministratorProfileController::class, 'store'])->name('profile.store');
 
         Route::prefix('settings')->name('settings.')->group(function () {
-            Route::controller(SettingsController::class)->group(function() {
-                Route::get('site', 'index')->name('site.index');
-                Route::post('site', 'store')->name('site.store');
+            Route::controller(SettingsController::class)->name('site.')->group(function() {
+                Route::get('site', 'index')->name('index');
+                Route::post('site', 'store')->name('store');
+            });
+            Route::controller(SettingsTagsController::class)->name('tags.')->group(function() {
+                Route::get('tags', 'index')->name('index');
+                Route::post('tags', 'store')->name('store');
             });
         });
     });
