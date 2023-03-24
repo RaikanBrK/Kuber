@@ -8,10 +8,10 @@ return [
     'create_administrator' => 'Create administrator',
     'edit_profile' => ' Edit profile',
     'user_preferences' => 'User preferences',
-    'site_settings' => 'Site settings',
+    'site_settings' => 'SITE SETTINGS',
     'general_settings' => 'General settings',
     'add_tags' => 'Add tags',
     'logo_and_favicon' => 'Logo and Favicon',
-    'shortcuts' => 'Shortcuts',
-    'back_site' => 'Voltar ao site'
+    'shortcuts' => 'SHORTCUTS',
+    'back_site' => 'Go back to website',
 ];
