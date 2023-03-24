@@ -2,6 +2,7 @@
 
 namespace Kuber\Http\Controllers\Admin\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Kuber\Http\Requests\Admin\LoginRequest;
 
