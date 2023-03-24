@@ -15,5 +15,7 @@ class Settings extends Model
         'body',
         'title',
         'description',
+        'logo',
+        'favicon',
     ];
 }

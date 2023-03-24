@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('body')->nullable();
             $table->string('title');
             $table->string('description');
+            $table->string('logo')->default(config('kuber.logo'));
+            $table->string('favicon')->default(config('kuber.favicon'));
             $table->timestamps();
         });
     }

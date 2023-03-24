@@ -340,7 +340,7 @@ return [
         ],
         [
             'text' => 'logo_and_favicon',
-            'url'  => '/admin/settings/logo-favicon',
+            'url'  => '/admin/settings/logo-and-favicon',
             'icon' => 'fas fa-fw fa-icons',
         ],
         ['header' => 'shortcuts'],

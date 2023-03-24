@@ -9,6 +9,7 @@ use Kuber\Http\Controllers\Admin\Auth\AdminLoginController;
 use Kuber\Http\Controllers\Admin\Auth\ResetPasswordController;
 use Kuber\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use Kuber\Http\Controllers\Admin\AdministratorProfileController;
+use Kuber\Http\Controllers\Admin\LogoAndFaviconController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,10 @@ Route::group($routesCfgAdmin, function () {
             Route::controller(SettingsTagsController::class)->name('tags.')->group(function() {
                 Route::get('tags', 'index')->name('index');
                 Route::post('tags', 'store')->name('store');
+            });
+            Route::controller(LogoAndFaviconController::class)->name('assets.')->group(function() {
+                Route::get('logo-and-favicon', 'index')->name('index');
+                Route::post('logo-and-favicon', 'store')->name('store');
             });
         });
     });
