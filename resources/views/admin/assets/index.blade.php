@@ -13,9 +13,8 @@
 @section('content')
     <div class="container-fluid" id="logoFaviconCards">
 
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.settings.assets.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-
             <x-kuber-card :title="__('kuber::admin/assets/index.title')" send="save">    
                 <x-adminlte-card :title="__('kuber::admin/assets/index.title_card_logo')" theme="lightblue" theme-mode="outline"
                     header-class="text-uppercase rounded-bottom border-info">
@@ -31,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="logo" />
+                                    <input type="file" class="custom-file-input" id="logo" name="logo" />
                                     <label class="custom-file-label" for="lgoo">Selecione a logo...</label>
                                 </div>
                             </div>
@@ -56,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="favicon" />
+                                    <input type="file" class="custom-file-input" id="favicon" name="favicon" />
                                     <label class="custom-file-label" for="favicon">Selecione o favicon...</label>
                                 </div>
                             </div>

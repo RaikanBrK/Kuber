@@ -36,4 +36,20 @@ class EloquentSettingsRepository implements SettingsRepository
         ]);
         return $this->settings;
     }
+
+    public function updateLogoAndFavicon($pathLogo, $pathFavicon): Settings
+    {
+        $dir = 'storage/';
+        if ($pathLogo) {
+            $this->settings->logo = $dir . $pathLogo;
+        }
+
+        if ($pathFavicon) {
+            $this->settings->favicon = $dir . $pathFavicon;
+        }
+
+        $this->settings->save();
+
+        return $this->settings;
+    }
 }
