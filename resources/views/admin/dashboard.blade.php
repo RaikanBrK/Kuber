@@ -7,13 +7,21 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
+    <div class="container-flui">
+        <div class="row">
+            <div class="col-md-6 col-xl-4">
+                <x-adminlte-small-box :title="$visits" text="Visualização no mês" icon="fas fa-eye text-dark"
+                theme="teal" url="#" url-text="Ver detalhes"/>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <x-adminlte-small-box :title="$bounceRate" text="Taxa de rejeição no mês" icon="fas fa-chart-bar text-dark"
+                theme="info" url="#" url-text="Ver detalhes"/>
+            </div>
+        </div>
+    </div>
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    
 @stop

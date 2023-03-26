@@ -2,13 +2,17 @@
 
 namespace Kuber\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Kuber\Helper\Visits;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('kuber::admin.dashboard');
+        $visits = Visits::visitsMonthCurrent();
+        $bounceRate = Visits::bounceRateMountCurrent();
+
+        return view('kuber::admin.dashboard', compact('visits', 'bounceRate'));
     }
 }
