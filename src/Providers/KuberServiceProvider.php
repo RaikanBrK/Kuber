@@ -99,7 +99,6 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->packagePath('src/Providers/RouteServiceProvider.php') => app_path() . '/Providers/RouteServiceProvider.php',
             $this->packagePath('src/Http/Middleware/RedirectIfAuthenticated.php') => app_path() . '/Http/Middleware/RedirectIfAuthenticated.php',
             $this->packagePath('src/Http/Middleware/Authenticate.php') => app_path() . '/Http/Middleware/Authenticate.php',
-            $this->packagePath('src/Http/Middleware/AddSettings.php') => app_path() . '/Http/Middleware/AddSettings.php',
 
             $this->packagePath('src/Repositories/') => app_path() . '/Repositories/',
 
@@ -181,6 +180,7 @@ class KuberServiceProvider extends SupportServiceProvider
     private function loadMiddleware()
     {
         $this->app['router']->pushMiddlewareToGroup('web', \Kuber\Http\Middleware\AddSettings::class);
+        $this->app['router']->aliasMiddleware('record-visit', \Kuber\Http\Middleware\RecordVisit::class);
         $this->app['router']->pushMiddlewareToGroup('web', \RealRashid\SweetAlert\ToSweetAlert::class);
     }
 }
