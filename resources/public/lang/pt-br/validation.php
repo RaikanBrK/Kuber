@@ -166,6 +166,7 @@ return [
     */
 
     'attributes' => [
+        'email'     => 'e-mail',
         'address'   => 'endereço',
         'age'       => 'idade',
         'body'      => 'conteúdo',
@@ -206,8 +207,6 @@ return [
         'description' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
         'current_password' => 'senha atual',
-        'checkBoxChangePassword' => 'alterar senha',
-        'period_count_visits' => 'período para nova visita',
     ],
 
 ];

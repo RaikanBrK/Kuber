@@ -8,8 +8,6 @@ use Kuber\View\Components\Tables;
 use Kuber\View\Components\Widget;
 use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberPublishCommand;
-use Kuber\Console\KuberAddSettingsCommand;
-use Kuber\Console\KuberAddSweetAlertCommand;
 use Kuber\Console\KuberCreateRepositoryCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
@@ -31,6 +29,7 @@ class KuberServiceProvider extends SupportServiceProvider
     protected $formComponents = [
         'button-rounded' => Form\ButtonRounded::class,
         'input-rounded' => Form\InputRounded::class,
+        'input' => Form\Input::class,
     ];
 
     /**
