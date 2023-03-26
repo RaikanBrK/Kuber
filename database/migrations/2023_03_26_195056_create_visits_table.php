@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('user_agent');
             $table->string('path');
             $table->string('referer')->nullable();
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 

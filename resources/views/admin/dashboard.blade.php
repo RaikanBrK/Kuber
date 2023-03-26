@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <div class="container-flui">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 col-xl-4">
                 <x-adminlte-small-box :title="$visits" text="Visualização no mês" icon="fas fa-eye text-dark"
