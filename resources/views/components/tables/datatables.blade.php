@@ -25,8 +25,12 @@
                             @else
                                 <td>
                                     @switch($key)
-                                        @case('image')
-                                            
+                                        @case('name')
+                                            @if($image)
+                                            <img src="{{ asset($item->image()) }}" alt="{{ $item->name }}"
+                                            class="img-fluid img-circle mr-2 border border-dark" style="width: 30px">
+                                            @endif
+                                            {{ $value }}
                                         @break
 
                                         @case('created_at')

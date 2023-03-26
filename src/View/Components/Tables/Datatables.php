@@ -15,7 +15,7 @@ class Datatables extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public $head, public $items, public $action = false, public $routeBase = null, public array $exceptActions = [])
+    public function __construct(public $head, public $items, public $image = false, public $action = false, public $routeBase = null, public array $exceptActions = [])
     {
         if ($this->routeBase == null) {
             $this->routeBaseDefault();

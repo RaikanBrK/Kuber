@@ -9,7 +9,7 @@
 @section('content')
     <div class="container-fluid">
         <x-adminlte-card :title="__('kuber::admin/administrators/index.title')" theme="lightblue">
-            <x-kuber-datatables :head="$head" :items="$users" action :exceptActions="['viewer']" />
+            <x-kuber-datatables :head="$head" :items="$users" action :exceptActions="['viewer']" image />
         </x-adminlte-card>
     </div>
 @endsection
