@@ -24,7 +24,12 @@
                                     id="imageProfile" accept=".png, .jpg, .jpeg">
                                 <small class="text-muted">{{ __('kuber::admin/profile/index.label_image') }}</small>
                             </label>
-                            <input type="file" class="d-none" id="campoImageProfile" name="image">
+                            <input type="file" class="d-none @error('image') is-invalid @enderror" id="campoImageProfile" name="image">
+                            @error('image') 
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col">

@@ -2,6 +2,7 @@
 
 namespace Kuber\Http\Requests\Admin;
 
+use Kuber\Rules\FileMaxMb;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LogoAndFaviconRequest extends FormRequest
@@ -24,8 +25,8 @@ class LogoAndFaviconRequest extends FormRequest
     public function rules()
     {
         return [
-            'logo' => ['nullable', 'image', 'mimes:png,jpg,jpeg,webp', 'max:2048'],
-            'favicon' => ['nullable', 'image', 'mimes:png,jpg,jpeg,webp', 'max:2048'],
+            'logo' => ['image', 'nullable', 'mimes:png,jpg,jpeg,webp', new FileMaxMb(2)],
+            'favicon' => ['image', 'nullable', 'mimes:png,jpg,jpeg,webp', new FileMaxMb(2)],
         ];
     }
 }

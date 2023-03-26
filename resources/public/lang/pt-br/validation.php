@@ -85,6 +85,7 @@ return [
     'max' => [
         'numeric' => 'O campo :attribute não pode ser superior a :max.',
         'file'    => 'O campo :attribute não pode ser superior a :max kilobytes.',
+        'fileMb'  => 'O campo :attribute não deve ser superior a :max megabytes.',
         'string'  => 'O campo :attribute não pode ser superior a :max caracteres.',
         'array'   => 'O campo :attribute não pode ter mais do que :max itens.',
     ],

@@ -87,6 +87,7 @@ return [
     'max' => [
         'array' => 'The :attribute must not have more than :max items.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
+        'fileMb'  => 'The :attribute must not be greater than :max megabytes.',
         'numeric' => 'The :attribute must not be greater than :max.',
         'string' => 'The :attribute must not be greater than :max characters.',
     ],
@@ -154,7 +155,7 @@ return [
     'custom' => [
         'password' => [
             'required_if' => 'The :attribute field is required when the :other field is selected.',
-        ]
+        ],
     ],
 
     /*
