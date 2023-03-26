@@ -12,18 +12,18 @@
             @csrf
         
             <x-kuber-card :title="__('kuber::admin/tags/index.title')" send="save">
-                <x-adminlte-textarea name="head" label="Tags dentro do &lt;head&gt;" placeholder="Tags do head" rows="5">
+                <x-adminlte-textarea name="head" :label="__('kuber::admin/tags/index.head.label')" :placeholder="__('kuber::admin/tags/index.head.placeholder')" rows="5">
                     {{ $settings->head }}
                 </x-adminlte-textarea>
 
-                <x-adminlte-textarea name="body" label="Tags dentro do &lt;body&gt;" placeholder="Tags do body" rows="5">
+                <x-adminlte-textarea name="body" :label="__('kuber::admin/tags/index.body.label')" :placeholder="__('kuber::admin/tags/index.body.placeholder')" rows="5">
                     {{ $settings->body }}
                 </x-adminlte-textarea>
             </x-kuber-card>
         </form>
 
         <x-adminlte-alert theme="warning" :title="__('kuber::admin/tags/index.title_alert')" >
-            {{ __('kuber::admin/tags/index.message_alert') }}
+            {{ __('kuber::admin/tags/index.message_alert', ['name' => auth()->guard('admin')->user()->name]) }}
         </x-adminlte-alert>        
     </div>
 @stop

@@ -2,5 +2,5 @@
 
 return [
 
-    'tags_update' => 'Tags atualizadas com sucesso',
+    'tags_update' => 'Tags updated successfully.',
 ];

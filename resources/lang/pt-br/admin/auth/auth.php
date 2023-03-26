@@ -3,17 +3,17 @@
 return [
     'author' => 'Carlos Alexandre',
     'title' => 'Página Administrativa',
-    'description' => 'Página administrativa',
+    'description' => 'Página Administrativa',
 
     'email' => [
         'label' => 'E-mail',
         'placeholder' => 'admin@xyz.com',
-        'description' => 'Digite seu email',
+        'description' => 'Insira seu e-mail',
     ],
 
     'password' => [
         'label' => 'Senha',
         'placeholder' => 'x x x x x x x x x',
-        'description' => 'Digite sua senha',
+        'description' => 'Insira sua senha',
     ]
 ];
