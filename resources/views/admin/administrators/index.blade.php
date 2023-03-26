@@ -8,8 +8,8 @@
 
 @section('content')
     <div class="container-fluid">
-        <x-adminlte-card :title="__('kuber::admin/administrators/index.title')" theme="lightblue">
+        <x-kuber-card :title="__('kuber::admin/administrators/index.title')">
             <x-kuber-datatables :head="$head" :items="$users" action :exceptActions="['viewer']" image />
-        </x-adminlte-card>
+        </x-kuber-card>
     </div>
 @endsection

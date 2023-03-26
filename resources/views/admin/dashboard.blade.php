@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 col-xl-4">
-                <x-adminlte-small-box :title="$visits" text="Visualização no mês" icon="fas fa-eye text-dark"
+                <x-adminlte-small-box :title="$visits" text="Visitas no mês" icon="fas fa-eye text-dark"
                 theme="teal" url="#" url-text="Ver detalhes"/>
             </div>
             <div class="col-md-6 col-xl-4">
@@ -23,5 +23,4 @@
 @stop
 
 @section('js')
-    
 @stop

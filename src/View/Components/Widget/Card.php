@@ -21,6 +21,9 @@ class Card extends Component
         public $theme = 'lightblue',
         public $send = false,
         public $back = false,
+        public $collapsible = null,
+        public $removable = null,
+        public $maximizable = null,
     )
     {
     }

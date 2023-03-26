@@ -1,4 +1,10 @@
-<x-adminlte-card :title="$title" :theme="$theme">
+<x-adminlte-card 
+    :title="$title"
+    :theme="$theme"
+    :collapsible="$collapsible"
+    :removable="$removable"
+    :maximizable="$maximizable"
+>
     {{ $slot }}
     @if($send || $back)
     <x-slot name="footerSlot">
