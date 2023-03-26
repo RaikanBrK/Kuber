@@ -152,9 +152,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'password' => [
+            'required_if' => 'The :attribute field is required when the :other field is selected.',
+        ]
     ],
 
     /*
@@ -208,8 +208,10 @@ return [
         'username' => 'username',
         'year' => 'year',
         'description' => 'description',
+        'desc' => 'description',
         'password_confirmation' => 'password confirmation',
         'current_password' => 'current password',
+        'checkBoxChangePassword' => 'change password',
     ],
 
 ];

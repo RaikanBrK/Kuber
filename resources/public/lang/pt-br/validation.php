@@ -149,10 +149,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'password' => [
+            'required_if' => 'O campo :attribute é obrigatório quando o campo :other for selecionado.',
+        ]
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -205,8 +206,10 @@ return [
         'username'  => 'usuário',
         'year'      => 'ano',
         'description' => 'descrição',
+        'desc' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
         'current_password' => 'senha atual',
+        'checkBoxChangePassword' => 'alterar senha',
     ],
 
 ];

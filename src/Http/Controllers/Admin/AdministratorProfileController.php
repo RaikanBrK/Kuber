@@ -34,7 +34,7 @@ class AdministratorProfileController extends Controller
 
         $this->repository->updateProfile($request, $image);
 
-        return to_route('admin.profile.index');
+        return to_route('admin.profile.index')->withToast_success(__('kuber::admin/profile/store.updateProfile'));
     }
 
     private function newImgProfile($image)

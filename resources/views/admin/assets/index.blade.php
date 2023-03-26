@@ -23,7 +23,7 @@
                             <img src="{{ asset($settings->logo) }}" alt="Logo" class="img-fluid logo" id="imageLogo">
                         </div>
                         <div class="col">
-                            <div class="input-group input-group-sm">
+                            <div class="input-group input-group-sm @error('logo') is-invalid @enderror">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-lightblue">
                                         <i class="fas fa-upload"></i>
@@ -31,9 +31,14 @@
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="logo" name="logo" />
-                                    <label class="custom-file-label" for="lgoo">Selecione a logo...</label>
+                                    <label class="custom-file-label" for="logo">Selecione a logo...</label>
                                 </div>
                             </div>
+                            @error('logo') 
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                             <small id="emailHelp" class="form-text text-muted">{{ __('kuber::admin/assets/index.message_help_logo') }}</small>
                         </div>
                     </div>
@@ -48,7 +53,7 @@
                         </div>
                         <div class="col">
 
-                            <div class="input-group input-group-sm">
+                            <div class="input-group input-group-sm @error('favicon') is-invalid @enderror">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text bg-lightblue">
                                         <i class="fas fa-upload"></i>
@@ -60,13 +65,17 @@
                                 </div>
                             </div>
 
+                            @error('favicon') 
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                             <small id="emailHelp" class="form-text text-muted">{{ __('kuber::admin/assets/index.message_help_favicon') }}</small>
                         </div>
                     </div>
                 </x-adminlte-card>
             </x-kuber-card>
         </form>
-
 
         <x-adminlte-alert theme="light" :title="__('kuber::admin/assets/index.alert.title')" dismissable>
             <p>{{ __('kuber::admin/assets/index.alert.p1') }}</p>

@@ -15,8 +15,7 @@ image.on('change', e => {
     e.preventDefault();
 });
 
-$('#checkBoxChangePassword').on('change', e => {
-    let checkbox = $(e.target)
+function changePassword(checkbox) {
     let changePassword = $('#changePassword');
     let passwordInput = $('#password');
     let passwordConfirmInput = $('#password_confirmation');
@@ -28,4 +27,10 @@ $('#checkBoxChangePassword').on('change', e => {
     } else {
         changePassword.addClass('d-none');
     }
+}
+
+$('#checkBoxChangePassword').on('change', e => {
+    changePassword($(e.target));
 });
+
+changePassword($('#checkBoxChangePassword'));

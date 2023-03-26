@@ -33,11 +33,4 @@ class AdminProfileUpdateRequest extends FormRequest
             'password' => ['required_if:checkBoxChangePassword,on', 'confirmed', 'min:8', 'max:255', 'nullable'],
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'password.required_if' => 'O campo :attribute é obrigatório quando o campo :other for selecionado.',
-        ];
-    }
 }
