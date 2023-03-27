@@ -24,4 +24,20 @@ class Visits {
 
         return round($bounceRate) . '%';
     }
+
+    public static function getVisitsYearCurrent()
+    {
+        $year = date('Y');
+        $monthlyVisits = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $visits = VisitsModel::whereYear('created_at', $year)
+                ->whereMonth('created_at', $month)
+                ->count();
+
+            $monthlyVisits[$month] = $visits;
+        }
+
+        return implode(", ", $monthlyVisits);
+    }
 }

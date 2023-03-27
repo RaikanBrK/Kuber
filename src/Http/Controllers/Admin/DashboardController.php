@@ -12,7 +12,8 @@ class DashboardController extends Controller
     {
         $visits = Visits::visitsMonthCurrent();
         $bounceRate = Visits::bounceRateMountCurrent();
+        $visitsYearCurrent = Visits::getVisitsYearCurrent();
 
-        return view('kuber::admin.dashboard', compact('visits', 'bounceRate'));
+        return view('kuber::admin.dashboard', compact('visits', 'bounceRate', 'visitsYearCurrent'));
     }
 }
