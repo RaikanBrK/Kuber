@@ -23,11 +23,8 @@
     <div class="container-fluid">
         <div class="card-columns" style="column-count: 2">
             <x-kuber-card title="Visitas de {{ date('Y') }}" theme="purple" collapsible removable maximizable>
-                <div>
-                    <canvas id="visitsYear"></canvas>
-                </div>
+                <x-kuber-charts-visits :visits="$visitsYearCurrent" />
             </x-kuber-card>
-
 
             <x-kuber-card title="Taxa de rejeição de {{ date('Y') }}" theme="dark" collapsible removable maximizable>
                 <div>
@@ -48,9 +45,8 @@
 @stop
 
 @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
+    {{-- <script>
         const ctx = document.getElementById('visitsYear');
         const ctxBrowser = document.getElementById('browsersUser');
         const ctxBounceRate = document.getElementById('bounceRateYear');
@@ -170,6 +166,6 @@
                 }
             },
         });
-    </script>
+    </script> --}}
 
 @stop

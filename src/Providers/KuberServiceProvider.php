@@ -6,6 +6,7 @@ use Kuber\View\Components\Form;
 use Kuber\View\Components\Alerts;
 use Kuber\View\Components\Tables;
 use Kuber\View\Components\Widget;
+use Kuber\View\Components\Charts;
 use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberPublishCommand;
 use Kuber\Console\KuberCreateRepositoryCommand;
@@ -53,13 +54,22 @@ class KuberServiceProvider extends SupportServiceProvider
         'datatables' => Tables\Datatables::class,
     ];
 
-     /**
+    /**
      * Array with the available form components.
      *
      * @var array
      */
     protected $widgetComponents = [
         'card' => Widget\Card::class,
+    ];
+
+    /**
+     * Array with the available form components.
+     *
+     * @var array
+     */
+    protected $chartsComponents = [
+        'charts-visits' => Charts\Visits::class,
     ];
 
     /**
@@ -172,6 +182,7 @@ class KuberServiceProvider extends SupportServiceProvider
             $this->alertsComponents,
             $this->tablesComponents,
             $this->widgetComponents,
+            $this->chartsComponents,
         );
 
         $this->loadViewComponentsAs($this->prefix, $components);

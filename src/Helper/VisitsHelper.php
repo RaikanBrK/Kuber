@@ -2,19 +2,19 @@
 
 namespace Kuber\Helper;
 
-use App\Models\Visits as VisitsModel;
+use App\Models\Visits;
 use Illuminate\Support\Facades\DB;
 
-class Visits {
+class VisitsHelper {
     public static function visitsMonthCurrent()
     {
-        return VisitsModel::whereMonth('created_at', now()->month)->count();
+        return Visits::whereMonth('created_at', now()->month)->count();
     }
 
     public static function bounceRateMountCurrent()
     {
-        $visits = VisitsModel::whereMonth('created_at', now()->month)->count();
-        $exits = VisitsModel::whereMonth('created_at', now()->month)->whereNull('referer')->count();
+        $visits = Visits::whereMonth('created_at', now()->month)->count();
+        $exits = Visits::whereMonth('created_at', now()->month)->whereNull('referer')->count();
 
         if ($visits == 0) {
             return 0 . '%';
@@ -31,13 +31,13 @@ class Visits {
         $monthlyVisits = [];
 
         for ($month = 1; $month <= 12; $month++) {
-            $visits = VisitsModel::whereYear('created_at', $year)
+            $visits = Visits::whereYear('created_at', $year)
                 ->whereMonth('created_at', $month)
                 ->count();
 
             $monthlyVisits[$month] = $visits;
         }
 
-        return implode(", ", $monthlyVisits);
+        return $monthlyVisits;
     }
 }
