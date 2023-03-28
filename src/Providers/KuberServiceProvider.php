@@ -70,6 +70,7 @@ class KuberServiceProvider extends SupportServiceProvider
      */
     protected $chartsComponents = [
         'charts-visits' => Charts\Visits::class,
+        'charts-browsers' => Charts\Browsers::class,
     ];
 
     /**

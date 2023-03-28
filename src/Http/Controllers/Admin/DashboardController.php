@@ -10,10 +10,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $visits = VisitsHelper::visitsMonthCurrent();
-        $bounceRate = VisitsHelper::bounceRateMountCurrent();
-        $visitsYearCurrent = VisitsHelper::getVisitsYearCurrent();
+        $visitsHelper = new VisitsHelper();
 
-        return view('kuber::admin.dashboard', compact('visits', 'bounceRate', 'visitsYearCurrent'));
+        $visits = $visitsHelper::visitsMonthCurrent();
+        $bounceRate = $visitsHelper::bounceRateMountCurrent();
+        $visitsYearCurrent = $visitsHelper::getVisitsYearCurrent();
+        $browsersYearCurrent = $visitsHelper->getBrowsersYearCurrent();
+
+        return view('kuber::admin.dashboard', compact('visits', 'bounceRate', 'visitsYearCurrent', 'browsersYearCurrent'));
     }
 }

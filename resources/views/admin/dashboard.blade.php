@@ -33,9 +33,7 @@
             </x-kuber-card>
 
             <x-kuber-card title="Navegadores dos usuários" theme="info" collapsible removable maximizable>
-                <div style="max-height: 400px" class="d-flex justify-content-center align-items-center">
-                    <canvas id="browsersUser"></canvas>
-                </div>
+                <x-kuber-charts-browsers :browsers="$browsersYearCurrent" />
             </x-kuber-card>
 
         </div>

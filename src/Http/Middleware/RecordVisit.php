@@ -2,19 +2,21 @@
 
 namespace Kuber\Http\Middleware;
 
-use App\Models\Visits;
 use Closure;
-use Illuminate\Support\Facades\DB;
+use App\Models\Visits;
+use Kuber\Traits\Browser;
 
 class RecordVisit
 {
+    use Browser;
+
     public function handle($request, Closure $next)
     {
         $response = $next($request);
 
         $visit = [
             'ip_address' => $request->ip(),
-            'user_agent' => $request->header('User-Agent'),
+            'browser' => $this->browser(),
             'path' => $request->path(),
             'referer' => $request->header('Referer'),
         ];

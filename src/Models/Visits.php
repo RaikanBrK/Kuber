@@ -12,7 +12,7 @@ class Visits extends Model
     protected $fillable = [
         'id',
         'ip_address',
-        'user_agent',
+        'browser',
         'path',
         'referer',
     ];

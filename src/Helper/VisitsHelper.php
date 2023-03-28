@@ -3,9 +3,12 @@
 namespace Kuber\Helper;
 
 use App\Models\Visits;
+use Kuber\Traits\Browser;
 use Illuminate\Support\Facades\DB;
 
 class VisitsHelper {
+    use Browser;
+
     public static function visitsMonthCurrent()
     {
         return Visits::whereMonth('created_at', now()->month)->count();
@@ -39,5 +42,20 @@ class VisitsHelper {
         }
 
         return $monthlyVisits;
+    }
+
+    public function getBrowsersYearCurrent()
+    {
+        $dataMonth = date('Y-m-01', strtotime('-2 months', strtotime(date('Y-m-d'))));
+        $browsers = [];
+
+        foreach($this->__get('allowedBrowsers') as $browser) {
+            $countBrowser = Visits::whereDate('created_at', '>=', $dataMonth)->where('browser', $browser)->count();
+            $browsers[$browser] = $countBrowser;
+        }
+
+        ksort($browsers);
+
+        return $browsers;
     }
 }

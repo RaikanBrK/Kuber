@@ -20,5 +20,4 @@
 </script>
 
 <script src="{{ asset('vendor/kuber/js/components/charts/visits.js') }}"></script>
-
 @endpush

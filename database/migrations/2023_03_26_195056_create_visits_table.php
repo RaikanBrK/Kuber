@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
             $table->string('ip_address');
-            $table->string('user_agent');
+            $table->string('browser');
             $table->string('path');
             $table->string('referer')->nullable();
             $table->timestamps();
