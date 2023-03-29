@@ -5,11 +5,10 @@
 @push('js')
 <script>
     var id = "#{{ $id }}";
-    var data = [{{ implode(" ,", $visits) }}];
-    var labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
-        'Outubro', 'Novembro', 'Dezembro'];
-    var label = 'Visitas';
-    var text = "Visitas por mês";
+    var data = [{{ implode(", ", $visits) }}];
+    var labels = [{!! "'" . implode("', '", __('kuber::components/charts/visits.labels')) . "'" !!}];
+    var label = "{{ __('kuber::components/charts/visits.label') }}";
+    var text = "{{ __('kuber::components/charts/visits.text') }}";
     var backgroundColor = "#cc65fe";
 </script>
 
