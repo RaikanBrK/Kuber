@@ -2,15 +2,9 @@
     <canvas id="{{ $id }}"></canvas>
 </div>
 
-@once
-    @push('js')
-        <script src="{{ asset('vendor/kuber/js/chart/chart.js') }}"></script>
-    @endpush
-@endonce
-
 @push('js')
 <script>
-    var ctxVisits = document.querySelector('#{{ $id }}');
+    var id = "#{{ $id }}";
     var data = [{{ implode(" ,", $visits) }}];
     var labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
         'Outubro', 'Novembro', 'Dezembro'];

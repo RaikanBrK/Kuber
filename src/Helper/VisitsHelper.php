@@ -4,7 +4,6 @@ namespace Kuber\Helper;
 
 use App\Models\Visits;
 use Kuber\Traits\Browser;
-use Illuminate\Support\Facades\DB;
 
 class VisitsHelper {
     use Browser;

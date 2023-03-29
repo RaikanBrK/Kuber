@@ -1,1 +1,1 @@
-new Chart(ctxVisits,{type:"bar",data:{labels:labels,datasets:[{label:label,data:data,borderWidth:1,backgroundColor:backgroundColor}]},options:{plugins:{responsive:!0,title:{display:!0,text:text},legend:{display:!1}},scales:{y:{ticks:{beginAtZero:!0,stepSize:1}}}}});
+var ctxVisits=document.querySelector(id);new Chart(ctxVisits,{type:"bar",data:{labels:labels,datasets:[{label:label,data:data,borderWidth:1,backgroundColor:backgroundColor}]},options:{plugins:{responsive:!0,title:{display:!0,text:text},legend:{display:!1}},scales:{y:{ticks:{beginAtZero:!0,stepSize:1}}}}});

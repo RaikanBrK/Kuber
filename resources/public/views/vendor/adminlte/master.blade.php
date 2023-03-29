@@ -86,6 +86,8 @@
 
     @include('sweetalert::alert')
 
+    @stack('support_js')
+
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 

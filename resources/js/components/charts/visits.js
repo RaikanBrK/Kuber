@@ -1,3 +1,5 @@
+var ctxVisits = document.querySelector(id);
+
 new Chart(ctxVisits, {
     type: 'bar',
     data: {
