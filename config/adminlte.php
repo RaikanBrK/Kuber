@@ -327,6 +327,22 @@ return [
             'url'  => 'admin/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
+        ['header' => 'reports'],
+        [
+            'text' => 'reports_visits',
+            'url'  => 'admin/reports/visits',
+            'icon' => 'fas fa-fw fa-street-view',
+        ],
+        [
+            'text' => 'reports_bounce_rate',
+            'url'  => 'admin/reports/bounce-rate',
+            'icon' => 'fas fa-fw fa-star-half-alt',
+        ],
+        [
+            'text' => 'reports_browsers',
+            'url'  => 'admin/reports/browsers',
+            'icon' => 'fas fa-fw fa-globe',
+        ],
         ['header' => 'site_settings'],
         [
             'text' => 'general_settings',

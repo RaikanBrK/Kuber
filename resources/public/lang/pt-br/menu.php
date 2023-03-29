@@ -13,5 +13,9 @@ return [
     'add_tags' => 'Adicionar tags',
     'logo_and_favicon' => 'Logo e Favicon',
     'shortcuts' => 'Atalhos',
-    'back_site' => 'Voltar ao site'
+    'back_site' => 'Voltar ao site',
+    'reports' => 'Relatórios',
+    'reports_visits' => 'Relatórios de visitas',
+    'reports_bounce_rate' => 'Relatórios de taxa de rejeição',
+    'reports_browsers' => 'Relatórios de navegadores',
 ];

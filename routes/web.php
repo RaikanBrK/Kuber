@@ -3,14 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use Kuber\Http\Controllers\Admin\SettingsController;
 use Kuber\Http\Controllers\Admin\DashboardController;
+use Kuber\Http\Controllers\Admin\ReportVisitsController;
 use Kuber\Http\Controllers\Admin\SettingsTagsController;
 use Kuber\Http\Controllers\Admin\AdministratorController;
+use Kuber\Http\Controllers\Admin\LogoAndFaviconController;
+use Kuber\Http\Controllers\Admin\ReportBrowsersController;
 use Kuber\Http\Controllers\Admin\Auth\AdminLoginController;
+use Kuber\Http\Controllers\Admin\Auth\AdminLogoutController;
+use Kuber\Http\Controllers\Admin\ReportBounceRateController;
 use Kuber\Http\Controllers\Admin\Auth\ResetPasswordController;
 use Kuber\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use Kuber\Http\Controllers\Admin\AdministratorProfileController;
-use Kuber\Http\Controllers\Admin\Auth\AdminLogoutController;
-use Kuber\Http\Controllers\Admin\LogoAndFaviconController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +54,12 @@ Route::group($routesCfgAdmin, function () {
                 Route::get('logo-and-favicon', 'index')->name('index');
                 Route::post('logo-and-favicon', 'store')->name('store');
             });
+        });
+
+        Route::prefix('reports')->name('reports.')->group(function () {
+            Route::get('visits', [ReportVisitsController::class, 'index'])->name('visits');
+            Route::get('bounce-rate', [ReportBounceRateController::class, 'index'])->name('bounce-rate');
+            Route::get('browsers', [ReportBrowsersController::class, 'index'])->name('browsers');
         });
     });
 

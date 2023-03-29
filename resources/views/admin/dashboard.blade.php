@@ -11,11 +11,11 @@
         <div class="row">
             <div class="col-md-6 col-xl-4">
                 <x-adminlte-small-box :title="$visits" :text="__('kuber::admin/dashboard.visits_text')" icon="fas fa-eye text-dark" theme="teal"
-                    url="#" :url-text="__('kuber::admin/dashboard.url_text')" />
+                    url="{{ route('admin.reports.visits') }}" :url-text="__('kuber::admin/dashboard.url_text')" />
             </div>
             <div class="col-md-6 col-xl-4">
                 <x-adminlte-small-box :title="$bounceRate" :text="__('kuber::admin/dashboard.bounce_rate_text')" icon="fas fa-chart-bar text-dark"
-                    theme="info" url="#" :url-text="__('kuber::admin/dashboard.url_text')" />
+                    theme="info" url="{{ route('admin.reports.bounce-rate') }}" :url-text="__('kuber::admin/dashboard.url_text')" />
             </div>
         </div>
     </div>

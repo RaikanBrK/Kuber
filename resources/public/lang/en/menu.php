@@ -14,4 +14,8 @@ return [
     'logo_and_favicon' => 'Logo and Favicon',
     'shortcuts' => 'SHORTCUTS',
     'back_site' => 'Go back to website',
+    'reports' => 'REPORTS',
+    'reports_visits' => 'Reports of visits',
+    'reports_bounce_rate' => 'Reports of bounce rate',
+    'reports_browsers' => 'Report of browsers',
 ];
