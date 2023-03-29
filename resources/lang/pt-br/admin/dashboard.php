@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Dashboard',
+    'title' => 'Painel administrativo',
 
     'visits_text' => 'Visitas no mês',
     'bounce_rate_text' => 'Taxa de rejeição no mês',
