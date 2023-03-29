@@ -6,7 +6,7 @@
 <script>
     var id = "#{{ $id }}";
     var data = [{{ implode(", ", $visits) }}];
-    var labels = [{!! "'" . implode("', '", __('kuber::components/charts/visits.labels')) . "'" !!}];
+    var labels = [{!! "'" . implode("', '", __('kuber::components/charts/chart.months')) . "'" !!}];
     var label = "{{ __('kuber::components/charts/visits.label') }}";
     var text = "{{ __('kuber::components/charts/visits.text') }}";
     var backgroundColor = "#cc65fe";

@@ -1,3 +1,5 @@
+var ctxBrowser = document.querySelector(id);
+
 new Chart(ctxBrowser, {
     type: 'pie',
     data: {
