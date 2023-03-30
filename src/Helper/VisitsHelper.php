@@ -3,11 +3,12 @@
 namespace Kuber\Helper;
 
 use App\Models\Visits as VisitsModel;
+use Kuber\Traits\BounceRate;
 use Kuber\Traits\Browser;
 use Kuber\Traits\Visits;
 
 class VisitsHelper {
-    use Browser, Visits;
+    use Browser, Visits, BounceRate;
 
     protected $yearCurrent = null;
     
@@ -15,7 +16,7 @@ class VisitsHelper {
 
     protected $year = null;
 
-    protected $step = 5;
+    protected $step = 10;
 
     public function runYear($year)
     {
@@ -29,27 +30,7 @@ class VisitsHelper {
         }
 
         $this->year = $year;
-    }
-
-    public function bounceRateMountCurrent()
-    {
-        $data = now();
-        return $this->bounceRateMount($data->year, $data->month);
-    }
-
-    public function bounceRateMount($year, $month, $prefix = '%')
-    {
-        $visits = VisitsModel::whereYear('created_at', $year)->whereMonth('created_at', $month)->count();
-        $exits = VisitsModel::whereYear('created_at', $year)->whereMonth('created_at', $month)->whereNull('referer')->count();
-
-        if ($visits == 0) {
-            return 0 . $prefix;
-        }
-
-        $bounceRate = ($exits / $visits) * 100;
-
-        return round($bounceRate) . $prefix;
-    }
+    } 
 
     public function getBrowsersYearCurrent()
     {
@@ -66,15 +47,4 @@ class VisitsHelper {
         return $browsers;
     }
 
-    public function getBounceRateYearCurrent()
-    {
-        $year = now()->year;
-        $bounceRateYear = [];
-
-        for($month = 1; $month <= 12; $month++) {
-            $bounceRateYear[$month] = $this->bounceRateMount($year, $month, false);
-        }
-
-        return $bounceRateYear;
-    }
 }
