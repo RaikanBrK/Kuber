@@ -2,7 +2,6 @@
 
 namespace Kuber\Http\Controllers\Admin;
 
-use App\Models\Admin;
 use Illuminate\Http\Request;
 use Kuber\Helper\VisitsHelper;
 use App\Http\Controllers\Controller;

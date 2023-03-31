@@ -1,0 +1,1 @@
+var ctxBrowserBar=document.querySelector(id);new Chart(ctxBrowserBar,{type:"bar",data:{labels:labels,datasets:data},options:{responsive:!0,scales:{x:{stacked:!0},y:{stacked:!0}}}});

@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use Kuber\Traits\Browser;
 
-class Browsers extends Component
+class BrowsersBar extends Component
 {
     use Browser;
 
@@ -19,12 +19,9 @@ class Browsers extends Component
      */
     public function __construct(
         public $browsers,
-        public $id = 'browsersQuarterly',
+        public $id = 'browsersBarYear',
     )
     {
-        $monthQuarterly = $this->getMonthQuarterly(now()->month);
-        $this->month1 = $monthQuarterly[0];
-        $this->month2 = $monthQuarterly[1];
     }
 
     /**
@@ -32,6 +29,6 @@ class Browsers extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('kuber::components.charts.browsers');
+        return view('kuber::components.charts.browsers-bar');
     }
 }

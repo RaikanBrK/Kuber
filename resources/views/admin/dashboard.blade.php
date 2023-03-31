@@ -31,7 +31,7 @@
             </x-kuber-card>
 
             <x-kuber-card :title="__('kuber::admin/dashboard.charts.browser')" theme="info" collapsible removable maximizable>
-                <x-kuber-charts-browsers :browsers="$browsersYearCurrent" />
+                <x-kuber-charts-browsers :browsers="$browsersQuarterCurrent" />
             </x-kuber-card>
         </div>
     </div>

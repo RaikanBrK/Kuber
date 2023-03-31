@@ -71,6 +71,7 @@ class KuberServiceProvider extends SupportServiceProvider
     protected $chartsComponents = [
         'charts-visits' => Charts\Visits::class,
         'charts-browsers' => Charts\Browsers::class,
+        'charts-browsers-bar' => Charts\BrowsersBar::class,
         'charts-bounce-rate' => Charts\BounceRate::class,
     ];
 

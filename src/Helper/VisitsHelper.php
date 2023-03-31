@@ -30,21 +30,5 @@ class VisitsHelper {
         }
 
         $this->year = $year;
-    } 
-
-    public function getBrowsersYearCurrent()
-    {
-        $dataMonth = date('Y-m-01', strtotime('-2 months', strtotime(date('Y-m-d'))));
-        $browsers = [];
-
-        foreach($this->__get('allowedBrowsers') as $browser) {
-            $countBrowser = VisitsModel::whereDate('created_at', '>=', $dataMonth)->where('browser', $browser)->count();
-            $browsers[$browser] = $countBrowser;
-        }
-
-        ksort($browsers);
-
-        return $browsers;
     }
-
 }
