@@ -6,7 +6,12 @@
 <script>
     var id = "#{{ $id }}";
     var data = [{{ implode(", ", $browsers) }}];
-    var labels = [{!! "'" . implode("', '", array_keys($browsers)) . "'" !!}];
+    // var labels = [{!! "'" . implode("', '", array_keys($browsers)) . "'" !!}];
+    var labels = [
+        @foreach(array_keys($browsers) as $browser)
+            '{{ __("kuber::components/charts/browser.browsers." . $browser) }}',
+        @endforeach
+    ];
     var text = "{{ __('kuber::components/charts/browser.text', [
         'month1' => __('kuber::components/charts/chart.months')[$month1],
         'month2' => __('kuber::components/charts/chart.months')[$month2],

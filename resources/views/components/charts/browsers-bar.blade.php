@@ -8,7 +8,7 @@
         var data = [
             @foreach ($browsers as $browser => $data)
                 {
-                    label: '{{ $browser }}',
+                    label: '{{ __("kuber::components/charts/browser.browsers." . $browser) }}',
                     data: [{{ implode(", ", $data) }}],
                 },
             @endforeach
