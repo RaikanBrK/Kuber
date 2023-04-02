@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Repositories\{{name}};
+namespace App\Repositories\{{namespace}};
 
-use App\Models\{{name}};
+use App\Models\{{model}};
 
 class Eloquent{{name}}Repository implements {{name}}Repository
 {
     protected $model;
 
-    public function __construct({{name}} $model)
+    public function __construct({{model}} $model)
     {
         $this->model = $model;
     }

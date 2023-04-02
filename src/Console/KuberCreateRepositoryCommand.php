@@ -15,7 +15,7 @@ class KuberCreateRepositoryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:repository {name}';
+    protected $signature = 'make:repository {name} {model?}';
 
     /**
      * The console command description.
@@ -31,6 +31,8 @@ class KuberCreateRepositoryCommand extends Command
      */
     private String $model;
 
+    private String|null $subFolder = null;
+
     /**
      * Caminho dos arquivos stubs
      *
@@ -43,7 +45,7 @@ class KuberCreateRepositoryCommand extends Command
      */
     public function handle(): void
     {
-        $this->model = ucfirst($this->argument('name'));
+        $this->runName();
 
         $this->info('Creating Kuber repository ' . $this->model . '...');
 
@@ -52,45 +54,40 @@ class KuberCreateRepositoryCommand extends Command
         $this->info('Kuber repository created successfully.');
     }
 
-    /**
-     * Recuperar caminho e sobrescrever caso exista
-     *
-     * @param String $dir
-     * @return string
-     */
-    private function getPathForce(String $dir): string
+    private function getSubFolder()
     {
-        $path = app_path($dir);
-
-        if (File::exists($path)) {
-            File::deleteDirectory($path);
-        }
-        File::makeDirectory($path, 0755, true);
-
-        return $path;
+        return $this->subFolder == null ? '' : $this->subFolder . '/';
     }
 
-    /**
-     * Recuperar caminho e sobrescrever arquivo caso exista
-     *
-     * @param String $dir
-     * @param String $fileName
-     * @return string
-     */
-    private function getFileForce(String $dir, String $fileName): string
+    private function runName()
     {
-        $path = app_path($dir);
-        $file = $path . $fileName;
+        $name = ucfirst($this->argument('name'));
+        $explodeName = explode("/", $name);
+
+        $this->model = array_pop($explodeName);
+
+        $this->subFolder = implode("/", $explodeName);
+    }
+
+    private function getPath(String $folder, $forceFolder, Bool $filenameRemoved = false, $addPathModel = true)
+    {
+        $dirInit = app_path($folder);
+        $path = $dirInit . '/' . $this->getSubFolder();
+        $path .= $addPathModel ? $this->model : '';
+
+        if ($forceFolder && File::exists($path)) {
+            File::deleteDirectory($path);
+        }
 
         if (File::exists($path) == false) {
-            File::makeDirectory($path);
+            File::makeDirectory($path, 0755, true);
         }
 
-        if (File::exists($file)) {
-            File::delete($file);
+        if ($filenameRemoved != false) {
+            File::delete($path . $filenameRemoved);
         }
 
-        return $file;
+        return $path;
     }
 
     /**
@@ -118,12 +115,19 @@ class KuberCreateRepositoryCommand extends Command
             "eloquent" => "EloquentRepository",
         ];
 
-        $path = $this->getPathForce('Repositories/' . $this->model);
+        $path = $this->getPath('Repositories', true);
 
         foreach ($files as $file) {
             $stub = file_get_contents($this->stubPath . '/' . $file . '.php.stub');
+
             $content = str_replace('{{name}}', $this->model, $stub);
 
+            $model = empty($this->argument('model')) ? $this->model : ucfirst($this->argument('model'));
+            $content = str_replace('{{model}}', $model, $content);
+
+            $namespace = str_replace("/", "\\", $this->getSubFolder() . $this->model);
+            $content = str_replace('{{namespace}}', $namespace, $content);
+            
             $nameFile = str_replace("Repository", "{$this->model}Repository", $file);
             $nameFile .= ".php";
 
@@ -143,24 +147,31 @@ class KuberCreateRepositoryCommand extends Command
         $stub = file_get_contents($this->stubPath . '/' . $file . '.php.stub');
         $content = str_replace('{{name}}', $this->model, $stub);
 
+        $namespace = str_replace("/", "\\", substr($this->getSubFolder(), 0, -1));
+        $namespace = empty($namespace) ? '' : "\\" . $namespace;
+        $content = str_replace('{{namespace}}', $namespace, $content);
+        
+        $namespaceRepository = str_replace("/", "\\", $this->getSubFolder()) . $this->model;
+        $content = str_replace('{{namespaceRepository}}', $namespaceRepository, $content);
+
         $nameFile = str_replace("Model", $this->model, $file);
         $nameFile .= ".php";
 
-        $pathFile = $this->getFileForce('Providers/Repositories/', $nameFile);
+        $path = $this->getPath('Providers/Repositories', false, $nameFile, false);
+        $pathFile = $path . '/' . $nameFile;
 
         file_put_contents($pathFile, $content);
 
-        $this->addProviderConfigApp();
+        $this->addProviderConfigApp($namespace);
     }
 
-    private function addProviderConfigApp():void
+    private function addProviderConfigApp($namespace):void
     {
         $appConfigPath = config_path('app.php');
 
         $appConfigContent = file_get_contents($appConfigPath);
 
-        $providerClass = 'App\Providers\Repositories\\' . $this->model . 'RepositoryProvider::class';
-
+        $providerClass = 'App\Providers\Repositories' . $namespace . "\\" . $this->model . 'RepositoryProvider::class';
         $string = '/* Repositories Service Providers... */';
 
         $classExist = strpos($appConfigContent, $providerClass);
