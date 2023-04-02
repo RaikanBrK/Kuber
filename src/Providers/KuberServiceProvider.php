@@ -109,6 +109,8 @@ class KuberServiceProvider extends SupportServiceProvider
     private function publish(): void
     {
         $this->publishes([
+            $this->packagePath('package.json') => app_path() . '/../package.json',
+            
             $this->packagePath('database/seeders/') => database_path('seeders'),
             $this->packagePath('src/Models/') => app_path() . '/Models',
             $this->packagePath('src/Providers/RouteServiceProvider.php') => app_path() . '/Providers/RouteServiceProvider.php',

@@ -41,13 +41,7 @@ class KuberDependencyInstallCommand extends Command
     {
         $process = array();
         $process[] = new Process(['php', 'artisan', 'adminlte:install']);
-        $process[] = new Process(['npm', 'install', 'bootstrap@4.6']);
-        $process[] = new Process(['npm', 'install', '@popperjs/core']);
-        $process[] = new Process(['npm', 'install', 'sass']);
-        $process[] = new Process(['npm', 'install', 'jquery']);
-        $process[] = new Process(['npm', 'install', '@fortawesome/fontawesome-free']);
         $process[] = new Process(['php', 'artisan', 'sweetalert:publish']);
-        $process[] = new Process(['php', 'artisan', 'kuber:sweet-alert']);
 
         $this->runProcessAndEchoMessage($process);
 
