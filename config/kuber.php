@@ -7,4 +7,8 @@ return [
 
     'logo' => 'vendor/kuber/images/logo.webp',
     'favicon' => 'vendor/kuber/images/favicon.webp',
+
+    'admin' => true,
+    'painel_admin' => true,
+    'guest_admin' => true,
 ];
