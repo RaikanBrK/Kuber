@@ -3,9 +3,6 @@
 namespace Kuber\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Process as ProcessFacades;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class KuberInstallCommand extends Command
 {
@@ -23,28 +20,13 @@ class KuberInstallCommand extends Command
      */
     protected $description = 'Instalando ferramentas do kuber';
 
-    private function runProcessAndEchoMessage(array $processList)
-    {
-        try {
-            foreach($processList as $process) {
-                $process->run();
-                echo $process->getOutput();
-            }
-        } catch (ProcessFailedException $exception) {
-            echo $exception->getMessage();
-        }
-    }
-
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
-        $process = array();
-        $process[] = new Process(['php', 'artisan', 'kuber:install-dependency']);
-        $process[] = new Process(['php', 'artisan', 'kuber:publish']);
-
-        $this->runProcessAndEchoMessage($process);
+        $this->call('kuber:install-dependency');
+        $this->call('kuber:publish');
 
         $this->info('Ferramentas do kuber instaladas com sucesso.');
     }

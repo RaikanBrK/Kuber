@@ -3,9 +3,6 @@
 namespace Kuber\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Process as ProcessFacades;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class KuberPublishCommand extends Command
 {
@@ -28,7 +25,10 @@ class KuberPublishCommand extends Command
      */
     public function handle(): void
     {
-        ProcessFacades::run('php artisan vendor:publish --tag=kuber-assets --force');
+        $this->call('vendor:publish', [
+            '--tag' => 'kuber-assets',
+            '--force' => true,
+        ]);
 
         $this->info('Arquivos publicadas com sucesso');
     }
