@@ -10,6 +10,7 @@ use Kuber\View\Components\Widget;
 use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberPublishCommand;
 use Kuber\Console\KuberCreateTraitCommand;
+use Kuber\Console\KuberCreateHelperCommand;
 use Kuber\Console\KuberCreateRepositoryCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
@@ -162,6 +163,7 @@ class KuberServiceProvider extends SupportServiceProvider
             KuberPublishCommand::class,
             KuberCreateRepositoryCommand::class,
             KuberCreateTraitCommand::class,
+            KuberCreateHelperCommand::class,
         ]);
     }
 
