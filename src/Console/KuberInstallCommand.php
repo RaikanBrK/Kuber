@@ -26,7 +26,10 @@ class KuberInstallCommand extends Command
     public function handle(): void
     {
         $this->call('kuber:install-dependency');
-        $this->call('kuber:publish');
+        $this->call('kuber:publish', [
+            '--force' => true,
+            '--forceOptional' => true,
+        ]);
 
         $this->info('Ferramentas do kuber instaladas com sucesso.');
     }

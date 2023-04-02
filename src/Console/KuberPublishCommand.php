@@ -3,6 +3,7 @@
 namespace Kuber\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Process;
 
 class KuberPublishCommand extends Command
 {
@@ -11,7 +12,7 @@ class KuberPublishCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'kuber:publish';
+    protected $signature = 'kuber:publish {--force : Force the command to run.}  {--forceOptional : Force assets optional the command to run.}';
 
     /**
      * The console command description.
@@ -25,10 +26,21 @@ class KuberPublishCommand extends Command
      */
     public function handle(): void
     {
+        $force = $this->option('force');
+        $forceOptional = $this->option('forceOptional');
+
         $this->call('vendor:publish', [
             '--tag' => 'kuber-assets',
-            '--force' => true,
+            '--force' => $force,
         ]);
+
+        $this->call('vendor:publish', [
+            '--tag' => 'kuber-assets-optional',
+            '--force' => $forceOptional,
+        ]);
+        if ($forceOptional) {
+            Process::run('npm install');
+        }
 
         $this->info('Arquivos publicadas com sucesso');
     }
