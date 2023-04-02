@@ -28,8 +28,10 @@ trait Model {
 
     private function runName()
     {
-        $name = ucfirst($this->argument('name'));
+        $name = $this->argument('name');
         $explodeName = explode("/", $name);
+
+        $explodeName = array_map('ucfirst', $explodeName);
 
         $this->model = array_pop($explodeName);
 

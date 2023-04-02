@@ -4,11 +4,12 @@ namespace Kuber\Providers;
 
 use Kuber\View\Components\Form;
 use Kuber\View\Components\Alerts;
+use Kuber\View\Components\Charts;
 use Kuber\View\Components\Tables;
 use Kuber\View\Components\Widget;
-use Kuber\View\Components\Charts;
 use Kuber\Console\KuberInstallCommand;
 use Kuber\Console\KuberPublishCommand;
+use Kuber\Console\KuberCreateTraitCommand;
 use Kuber\Console\KuberCreateRepositoryCommand;
 use Kuber\Console\KuberDependencyInstallCommand;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
@@ -160,6 +161,7 @@ class KuberServiceProvider extends SupportServiceProvider
             KuberInstallCommand::class,
             KuberPublishCommand::class,
             KuberCreateRepositoryCommand::class,
+            KuberCreateTraitCommand::class,
         ]);
     }
 
