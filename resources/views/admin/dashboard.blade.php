@@ -6,6 +6,11 @@
     <h1>{{ __('kuber::admin/dashboard.title') }}</h1>
 @stop
 
+@php
+    $routeBounceRate = Route::has('admin.reports.bounce-rate');
+    $routeBrowsers = Route::has('admin.reports.browsers');
+@endphp
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -13,10 +18,12 @@
                 <x-adminlte-small-box :title="$visits" :text="__('kuber::admin/dashboard.visits_text')" icon="fas fa-eye text-dark" theme="teal"
                     url="{{ route('admin.reports.visits') }}" :url-text="__('kuber::admin/dashboard.url_text')" />
             </div>
+            @if($routeBounceRate)
             <div class="col-md-6 col-xl-4">
                 <x-adminlte-small-box :title="$bounceRate" :text="__('kuber::admin/dashboard.bounce_rate_text')" icon="fas fa-chart-bar text-dark"
                     theme="info" url="{{ route('admin.reports.bounce-rate') }}" :url-text="__('kuber::admin/dashboard.url_text')" />
             </div>
+            @endif
         </div>
     </div>
 
@@ -26,13 +33,17 @@
                 <x-kuber-charts-visits :visits="$visitsYearCurrent" />
             </x-kuber-card>
 
+            @if ($routeBounceRate)
             <x-kuber-card :title="__('kuber::admin/dashboard.charts.bounce_rate', ['year' => date('Y')])" theme="dark" collapsible removable maximizable>
                 <x-kuber-charts-bounce-rate :bounceRate="$bounceRateYearCurrent" />
             </x-kuber-card>
+            @endif
 
+            @if ($routeBrowsers)
             <x-kuber-card :title="__('kuber::admin/dashboard.charts.browser')" theme="info" collapsible removable maximizable>
                 <x-kuber-charts-browsers :browsers="$browsersQuarterCurrent" />
             </x-kuber-card>
+            @endif
         </div>
     </div>
 @stop

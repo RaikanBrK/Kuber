@@ -336,11 +336,13 @@ return [
         [
             'text' => 'reports_bounce_rate',
             'url'  => 'admin/reports/bounce-rate',
+            'route' => 'admin.reports.bounce-rate',
             'icon' => 'fas fa-fw fa-star-half-alt',
         ],
         [
             'text' => 'reports_browsers',
             'url'  => 'admin/reports/browsers',
+            'route' => 'admin.reports.browsers',
             'icon' => 'fas fa-fw fa-globe',
         ],
         ['header' => 'site_settings'],

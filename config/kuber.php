@@ -11,4 +11,7 @@ return [
     'admin' => true,
     'painel_admin' => true,
     'guest_admin' => true,
+
+    'report_browser' => true,
+    'report_bounce_rate' => true,
 ];

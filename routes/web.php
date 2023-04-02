@@ -61,8 +61,14 @@ Route::group($routesCfgAdmin, function () {
 
                 Route::prefix('reports')->name('reports.')->group(function () {
                     Route::get('visits', [ReportVisitsController::class, 'index'])->name('visits');
-                    Route::get('bounce-rate', [ReportBounceRateController::class, 'index'])->name('bounce-rate');
-                    Route::get('browsers', [ReportBrowsersController::class, 'index'])->name('browsers');
+
+                    if (Config::get('kuber.report_bounce_rate')) {
+                        Route::get('bounce-rate', [ReportBounceRateController::class, 'index'])->name('bounce-rate');
+                    }
+
+                    if (Config::get('kuber.report_browser')) {
+                        Route::get('browsers', [ReportBrowsersController::class, 'index'])->name('browsers');
+                    }
                 });
             });
         }
