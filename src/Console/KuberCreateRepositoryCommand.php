@@ -2,14 +2,13 @@
 
 namespace Kuber\Console;
 
+use Kuber\Traits\Console\Model;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
-use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Process as ProcessFacades;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class KuberCreateRepositoryCommand extends Command
 {
+    use Model;
+
     /**
      * The name and signature of the console command.
      *
@@ -25,22 +24,6 @@ class KuberCreateRepositoryCommand extends Command
     protected $description = 'Create Repository';
 
     /**
-     * Nome do model
-     *
-     * @var String
-     */
-    private String $model;
-
-    private String|null $subFolder = null;
-
-    /**
-     * Caminho dos arquivos stubs
-     *
-     * @var String
-     */
-    private String $stubPath;
-
-    /**
      * Execute the console command.
      */
     public function handle(): void
@@ -52,42 +35,6 @@ class KuberCreateRepositoryCommand extends Command
         $this->createStubs();
 
         $this->info('Kuber repository created successfully.');
-    }
-
-    private function getSubFolder()
-    {
-        return $this->subFolder == null ? '' : $this->subFolder . '/';
-    }
-
-    private function runName()
-    {
-        $name = ucfirst($this->argument('name'));
-        $explodeName = explode("/", $name);
-
-        $this->model = array_pop($explodeName);
-
-        $this->subFolder = implode("/", $explodeName);
-    }
-
-    private function getPath(String $folder, $forceFolder, Bool $filenameRemoved = false, $addPathModel = true)
-    {
-        $dirInit = app_path($folder);
-        $path = $dirInit . '/' . $this->getSubFolder();
-        $path .= $addPathModel ? $this->model : '';
-
-        if ($forceFolder && File::exists($path)) {
-            File::deleteDirectory($path);
-        }
-
-        if (File::exists($path) == false) {
-            File::makeDirectory($path, 0755, true);
-        }
-
-        if ($filenameRemoved != false) {
-            File::delete($path . $filenameRemoved);
-        }
-
-        return $path;
     }
 
     /**
