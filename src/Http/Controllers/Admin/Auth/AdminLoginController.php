@@ -4,6 +4,7 @@ namespace Kuber\Http\Controllers\Admin\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Kuber\Http\Requests\Admin\LoginRequest;
 
 class AdminLoginController extends Controller
@@ -19,6 +20,6 @@ class AdminLoginController extends Controller
 
         $request->session()->regenerate();
 
-        return to_route(config('kuber.route_admin'));
+        return to_route(RouteServiceProvider::HOME_ADMIN);
     }
 }

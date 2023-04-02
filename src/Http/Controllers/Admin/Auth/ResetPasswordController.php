@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
@@ -39,7 +40,7 @@ class ResetPasswordController extends Controller
         );
         
         return $status == Password::PASSWORD_RESET
-            ? redirect()->route('admin.login')->withInfo(__($status))
+            ? redirect()->route(RouteServiceProvider::LOGIN_ADMIN)->withInfo(__($status))
             : back()->withInput($request->only('email'))
                     ->withError(__($status));
     }
