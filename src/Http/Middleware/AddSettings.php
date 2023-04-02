@@ -2,9 +2,10 @@
 
 namespace Kuber\Http\Middleware;
 
-use App\Models\Settings;
 use Closure;
+use App\Models\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AddSettings
 {
@@ -17,7 +18,9 @@ class AddSettings
      */
     public function handle(Request $request, Closure $next)
     {
-        $request->merge(['settings' => Settings::find(1)]);
+        if (File::exists(app_path() . '/Models/Settings.php')) {
+            $request->merge(['settings' => Settings::find(1)]);
+        }
 
         return $next($request);
     }
