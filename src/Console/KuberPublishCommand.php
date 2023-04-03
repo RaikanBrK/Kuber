@@ -39,7 +39,7 @@ class KuberPublishCommand extends Command
             '--force' => $forceOptional,
         ]);
         if ($forceOptional) {
-            Process::run('npm install');
+            $this->info('Execute o comando npm install');
         }
 
         $this->info('Arquivos publicadas com sucesso');

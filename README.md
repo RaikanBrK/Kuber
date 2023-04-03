@@ -14,7 +14,21 @@ Instalando Kuber
 php artisan kuber:install
 ```
 
-Recomendado
+Instalar migrates
+```
+php artisan migrate --seed
+```
+or
+```
+php artisan migrate:fresh --seed
+```
+
+Criando link simbólico
+```
+php artisan storage:link
+```
+
+Instalando dependências do node
 ```
 npm install
 ```
