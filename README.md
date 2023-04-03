@@ -9,26 +9,26 @@ Adicionando repositório
 composer require raikanbrk/kuber
 ```
 
-Instalando Kuber
+### Instalando Kuber
 ```
 php artisan kuber:install
 ```
 
-Instalar migrates
+### Instalar migrations
 ```
 php artisan migrate --seed
 ```
-or
+Ou
 ```
 php artisan migrate:fresh --seed
 ```
 
-Criando link simbólico
+### Criando link simbólico
 ```
 php artisan storage:link
 ```
 
-Instalando dependências do node
+### Instalando dependências do node
 ```
 npm install
 ```
