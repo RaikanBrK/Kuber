@@ -2,6 +2,7 @@
     "name": "raikanbrk/kuber",
     "description": "Biblioteca complementar ao projeto kuber",
     "type": "library",
+    "minimum-stability": "stable",
     "require": {
         "php": "^8.0",
         "jeroennoten/laravel-adminlte": "^3.8",
