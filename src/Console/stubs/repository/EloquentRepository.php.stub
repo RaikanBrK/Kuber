@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Repositories\{{namespace}};
+
+use App\Models\{{model}};
+
+class Eloquent{{name}}Repository implements {{name}}Repository
+{
+    protected $model;
+
+    public function __construct({{model}} $model)
+    {
+        $this->model = $model;
+    }
+
+    public function create($request)
+    {
+        return $this->model->create($request);
+    }
+
+    public function update($request, $id)
+    {
+        $model = $this->model->find($id);
+        $model->update($request);
+
+        return $model;
+    }
+
+    public function delete($id)
+    {
+        $model = $this->model->find($id);
+        $model->delete();
+    }
+}

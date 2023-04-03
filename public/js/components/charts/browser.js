@@ -1,0 +1,1 @@
+var ctxBrowser=document.querySelector(id);new Chart(ctxBrowser,{type:"pie",data:{labels:labels,datasets:[{data:data,borderWidth:1}]},options:{plugins:{responsive:!0,title:{display:!0,text:text}},scales:{y:{display:!1}}}});

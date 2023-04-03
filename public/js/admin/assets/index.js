@@ -1,0 +1,1 @@
+function addEventRenderImageFromUpload(e,a){e.on("change",(e=>{let n=e.target;const o=new FileReader;o.onload=function(){var e=o.result;a.attr("src",e)},n.files.length>0&&o.readAsDataURL(n.files[0]),e.preventDefault()}))}addEventRenderImageFromUpload($("#logo"),$("#imageLogo")),addEventRenderImageFromUpload($("#favicon"),$("#imageFavicon"));

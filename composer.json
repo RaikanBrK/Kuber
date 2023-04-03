@@ -1,0 +1,33 @@
+{
+    "name": "raikanbrk/kuber",
+    "description": "Kuber é uma biblioteca Laravel de desenvolvimento de sites que inclui um painel administrativo pré-configurado e recursos poderosos, como gerenciamento de usuários e conteúdo. Uma escolha inteligente para desenvolvedores que desejam economizar tempo e custos no desenvolvimento de sites.",
+    "type": "library",
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+        "jeroennoten/laravel-adminlte": "^3.8",
+        "laravel/ui": "^4.0",
+        "realrashid/sweet-alert": "^6.0",
+        "intervention/image": "^2.7",
+        "cbschuld/browser.php": "^1.9"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kuber\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Carlos Alexandre",
+            "email": "carlos24106@outlook.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kuber\\Providers\\KuberServiceProvider"
+            ]
+        }
+    }
+}

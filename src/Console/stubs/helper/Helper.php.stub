@@ -1,0 +1,7 @@
+<?php
+
+namespace App\Helper{{namespace}};
+{{traitNamespace}}
+class {{name}}Helper {
+    {{trait}}
+}
