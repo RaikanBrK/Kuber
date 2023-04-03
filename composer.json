@@ -28,6 +28,5 @@
                 "Kuber\\Providers\\KuberServiceProvider"
             ]
         }
-    },
-    "minimum-stability": "stable"
+    }
 }
