@@ -56,8 +56,12 @@ trait Browser
 
     public function getBrowsersBetween($year, Array $monthsBetween)
     {
-        $date1 = date("Y-{$this->getStringMonthQuarterly($monthsBetween[0])}-01");
-        $date2 = date("Y-{$this->getStringMonthQuarterly($monthsBetween[1])}-t 23:59:59");
+        $firstMonth = $this->getStringMonthQuarterly($monthsBetween[0]);
+        $lastMonth = $this->getStringMonthQuarterly($monthsBetween[1]);
+        $lastDay = cal_days_in_month(CAL_GREGORIAN, $lastMonth, $year);
+
+        $date1 = date("{$year}-{$firstMonth}-01");
+        $date2 = date("{$year}-{$lastMonth}-{$lastDay} 23:59:59");
 
         $monthlyBrowsers = VisitsModel::select(DB::raw('browser'), DB::raw('COUNT(*) as browsers'))
             ->whereYear('created_at', $year)
